@@ -1,0 +1,52 @@
+// color variables
+$navbar-color: lightyellow;
+$heading-under-nav-color: black;
+
+.container-fluid {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: $navbar-color;
+    z-index: 99;
+}
+
+.title-under-nav {
+    margin-top: 56px;
+    h4 {
+        color: $heading-under-nav-color;
+        padding-top: 40px;
+        padding-bottom: 40px;
+        text-align: center;
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+}
+
+hr {
+    border-width: 2px;
+}
+
+.container-flex {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.image-frame {
+    border-width: 1px;
+    border-color: black;
+    border-style: solid;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 20px;
+    width: 280px;
+    height: 280px;
+}

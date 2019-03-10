@@ -1,10 +1,19 @@
 // color variables
 $navbar-color: lightyellow;
 $heading-under-nav-color: black;
+$menu-category-color: black;
+$menu-price-color: darkred;
+$menu-item-color: black;
+$menu-item-description-color: grey;
 
 .container-fluid {
     padding-left: 0;
     padding-right: 0;
+}
+
+.container {
+    padding-left: 30px;
+    padding-right: 30px
 }
 
 .navbar {
@@ -13,10 +22,12 @@ $heading-under-nav-color: black;
     width: 100%;
     background: $navbar-color;
     z-index: 99;
+    padding-bottom: 6px;
+    padding-top: 6px;
 }
 
 .title-under-nav {
-    margin-top: 56px;
+    margin-top: 52px;
     h4 {
         color: $heading-under-nav-color;
         padding-top: 40px;
@@ -25,6 +36,16 @@ $heading-under-nav-color: black;
         margin-top: 0;
         margin-bottom: 0;
     }
+}
+
+.row {
+    div {
+        justify-content: center;
+    }
+}
+
+p {
+    margin-bottom: 20px;
 }
 
 hr {
@@ -47,6 +68,28 @@ hr {
     margin-top: 20px;
     margin-bottom: 20px;
     padding: 20px;
-    width: 280px;
+    width: auto;
+    max-width: 280px;
     height: 280px;
+    flex-basis: 280px;
+}
+
+
+.menu {
+    h5 {
+        color: $menu-category-color;
+    }
+    span {
+        color: $menu-price-color;
+    }
+
+    ol {
+        li {
+            color: $menu-item-color;
+        }
+        p{
+            color: $menu-item-description-color;
+            font-style: italic;
+        }
+    }
 }

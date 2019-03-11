@@ -3,16 +3,23 @@
   padding-right: 0;
 }
 
+.container {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
 .navbar {
   position: fixed;
   top: 0;
   width: 100%;
   background: lightyellow;
   z-index: 99;
+  padding-bottom: 6px;
+  padding-top: 6px;
 }
 
 .title-under-nav {
-  margin-top: 56px;
+  margin-top: 52px;
 }
 .title-under-nav h4 {
   color: black;
@@ -21,6 +28,14 @@
   text-align: center;
   margin-top: 0;
   margin-bottom: 0;
+}
+
+.row div {
+  justify-content: center;
+}
+
+p {
+  margin-bottom: 20px;
 }
 
 hr {
@@ -43,8 +58,32 @@ hr {
   margin-top: 20px;
   margin-bottom: 20px;
   padding: 20px;
-  width: 280px;
-  height: 280px;
+}
+
+@media (max-width: 340px) {
+  .image-frame {
+    width: 240px;
+    height: 240px;
+  }
+}
+@media (min-width: 341px) {
+  .image-frame {
+    width: 280px;
+    height: 280px;
+  }
+}
+.menu h5 {
+  color: black;
+}
+.menu span {
+  color: darkred;
+}
+.menu ol li {
+  color: black;
+}
+.menu ol p {
+  color: grey;
+  font-style: italic;
 }
 
 /*# sourceMappingURL=style.css.map */

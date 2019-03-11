@@ -58,7 +58,7 @@ hr {
     justify-content: center;
 }
 
-.image-frame {
+%box {
     border-width: 1px;
     border-color: black;
     border-style: solid;
@@ -68,12 +68,25 @@ hr {
     margin-top: 20px;
     margin-bottom: 20px;
     padding: 20px;
-    width: auto;
-    max-width: 280px;
-    height: 280px;
-    flex-basis: 280px;
 }
 
+.image-frame {
+    @extend %box;
+}
+
+@media (max-width: 340px) {
+    .image-frame {
+        width: 240px;
+        height: 240px;
+    }
+}
+
+@media (min-width: 341px) {
+    .image-frame {
+        width: 280px;
+        height: 280px;
+    }
+}
 
 .menu {
     h5 {
@@ -87,7 +100,7 @@ hr {
         li {
             color: $menu-item-color;
         }
-        p{
+        p {
             color: $menu-item-description-color;
             font-style: italic;
         }

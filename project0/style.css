@@ -86,4 +86,15 @@ hr {
   font-style: italic;
 }
 
+#hours-table {
+  margin: auto;
+  width: 270px;
+}
+#hours-table .left-table-column {
+  text-align: left;
+}
+#hours-table .right-table-column {
+  text-align: right;
+}
+
 /*# sourceMappingURL=style.css.map */

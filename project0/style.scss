@@ -106,3 +106,16 @@ hr {
         }
     }
 }
+
+#hours-table {
+    margin: auto;
+    width: 270px;
+
+    .left-table-column {
+        text-align: left;
+    }
+
+    .right-table-column {
+        text-align: right;
+    }
+}

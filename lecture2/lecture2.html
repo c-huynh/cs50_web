@@ -71,7 +71,7 @@
 </code></pre></div>    </div>
     <ul>
       <li>Lists are mutable collections of values under a single name, which can be indexed positionally.</li>
-      <li>Indexing out of range raises a Python ‘exception’. In this case, an <code class="highlighter-rouge">IndexError</code>, because there is no fourth value in <code class="highlighter-rouge">names</code> for Python to return.</li>
+      <li>Indexing out of range raises a Python 'exception'. In this case, an <code class="highlighter-rouge">IndexError</code>, because there is no fourth value in <code class="highlighter-rouge">names</code> for Python to return.</li>
     </ul>
   </li>
   <li>
@@ -136,7 +136,7 @@
       </li>
     </ul>
   </li>
-  <li>Trying to call a function that hasn’t been defined will raise a <code class="highlighter-rouge">NameError</code> exception.</li>
+  <li>Trying to call a function that hasn't been defined will raise a <code class="highlighter-rouge">NameError</code> exception.</li>
 </ul>
 
 <h3 id="modules">Modules</h3>
@@ -151,7 +151,7 @@
     <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
       <span class="n">main</span><span class="p">()</span>
 </code></pre></div>    </div>
-    <p>This should be interpreted as saying ‘if this file is currently being run’, execute <code class="highlighter-rouge">main</code>.</p>
+    <p>This should be interpreted as saying 'if this file is currently being run', execute <code class="highlighter-rouge">main</code>.</p>
   </li>
 </ul>
 
@@ -224,7 +224,7 @@
 
 <ul>
   <li>When any string is entered as a route, that will be stored as <code class="highlighter-rouge">name</code>, which is can then be used inside the decorated function.</li>
-  <li>Since Python code is rendering the website, anything Python is capable of can be used. For example, <code class="highlighter-rouge">name</code> can be capitalized before it’s displayed:</li>
+  <li>Since Python code is rendering the website, anything Python is capable of can be used. For example, <code class="highlighter-rouge">name</code> can be capitalized before it's displayed:</li>
 </ul>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span>
@@ -238,7 +238,7 @@
 </code></pre></div></div>
 
 <ul>
-  <li>Inline HTML isn’t that useful, though. Separate HTML files can be used like so:</li>
+  <li>Inline HTML isn't that useful, though. Separate HTML files can be used like so:</li>
 </ul>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
@@ -316,7 +316,7 @@
 <h4 id="template-inheritance">Template Inheritance</h4>
 
 <ul>
-  <li>In order to cut down on repetitive HTML amongst many different pages, Jinja2 has a feature called ‘template inheritance’ that uses the idea of <code class="highlighter-rouge">block</code>s to organize content. For examples, have a look at <code class="highlighter-rouge">layout.html</code> and <code class="highlighter-rouge">index.html</code> in the <code class="highlighter-rouge">inheritance/</code> directory of the same source code.</li>
+  <li>In order to cut down on repetitive HTML amongst many different pages, Jinja2 has a feature called 'template inheritance' that uses the idea of <code class="highlighter-rouge">block</code>s to organize content. For examples, have a look at <code class="highlighter-rouge">layout.html</code> and <code class="highlighter-rouge">index.html</code> in the <code class="highlighter-rouge">inheritance/</code> directory of the same source code.</li>
   <li>Everything in the <code class="highlighter-rouge">heading</code> block is placed where indicated in <code class="highlighter-rouge">layout.html</code>, and same for <code class="highlighter-rouge">body</code>.</li>
 </ul>
 
@@ -334,7 +334,7 @@
 </code></pre></div>    </div>
 
     <ul>
-      <li>The <code class="highlighter-rouge">action</code> attribute lists the route that should be ‘notified’ when the form is submitted. In this case, it’s the URL for a function called <code class="highlighter-rouge">hello</code>.</li>
+      <li>The <code class="highlighter-rouge">action</code> attribute lists the route that should be 'notified' when the form is submitted. In this case, it's the URL for a function called <code class="highlighter-rouge">hello</code>.</li>
       <li>The <code class="highlighter-rouge">method</code> attribute is how the HTTP request to submit the form should be made. The default method is <code class="highlighter-rouge">get</code>, which is what browsers make when a URL is entered. When data is being submitted, however, <code class="highlighter-rouge">post</code> should be used.</li>
       <li>The <code class="highlighter-rouge">name</code> attribute of the input, while not new, is now relevant because it can be referenced when the form is submitted.</li>
     </ul>
@@ -354,7 +354,7 @@
 </code></pre></div></div>
 
 <ul>
-  <li>The route <code class="highlighter-rouge">/hello</code> is the same <code class="highlighter-rouge">hello</code> listed in the Jinja2 code. This route can also accept the <code class="highlighter-rouge">POST</code> method, which is how the form’s data is being submitted. If any other method is used to access this route, a <code class="highlighter-rouge">Method Not Allowed</code> error  will be raised.
+  <li>The route <code class="highlighter-rouge">/hello</code> is the same <code class="highlighter-rouge">hello</code> listed in the Jinja2 code. This route can also accept the <code class="highlighter-rouge">POST</code> method, which is how the form's data is being submitted. If any other method is used to access this route, a <code class="highlighter-rouge">Method Not Allowed</code> error  will be raised.
     <ul>
       <li>If there are multiple request methods that should be allowed, which method is being used can be checked with <code class="highlighter-rouge">request.method</code>, which will be equal to, for example, <code class="highlighter-rouge">"GET"</code> or <code class="highlighter-rouge">"POST"</code>.</li>
     </ul>
@@ -364,7 +364,7 @@
 <h4 id="sessions">Sessions</h4>
 
 <ul>
-  <li>Sessions are how Flask can keep track of data that pertains to a particular user. Let’s take a note-taking app, for example. Users should only be able to see their own notes.</li>
+  <li>Sessions are how Flask can keep track of data that pertains to a particular user. Let's take a note-taking app, for example. Users should only be able to see their own notes.</li>
   <li>To use sessions, they must be imported and set up:</li>
 </ul>
 
@@ -398,7 +398,7 @@
 </code></pre></div></div>
 
 <ul>
-  <li><code class="highlighter-rouge">notes</code> is the list where the notes will be stored. If the user doesn’t have a notes list already (checked with <code class="highlighter-rouge">if session.get("notes") is None</code>), then they are given an empty one.</li>
+  <li><code class="highlighter-rouge">notes</code> is the list where the notes will be stored. If the user doesn't have a notes list already (checked with <code class="highlighter-rouge">if session.get("notes") is None</code>), then they are given an empty one.</li>
   <li>If a request is submitted via <code class="highlighter-rouge">"POST"</code> (that is, through the form), then the note is processed from the form in the same way as before.</li>
   <li>The processed note, now in a Python variable called <code class="highlighter-rouge">note</code>, is appended to the <code class="highlighter-rouge">notes</code> list. This list is itself inside a <code class="highlighter-rouge">dict</code> called <code class="highlighter-rouge">session</code>. Every user has a unique <code class="highlighter-rouge">session</code> <code class="highlighter-rouge">dict</code>, and therefore a unique <code class="highlighter-rouge">notes</code> list.</li>
   <li>Finally, the notelist is rendered by passing <code class="highlighter-rouge">session["notes"]</code> to <code class="highlighter-rouge">render_template</code>.</li>

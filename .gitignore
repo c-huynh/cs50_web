@@ -123,4 +123,7 @@ dmypy.json
 .pyre/
 
 # Project Environment
-cs50_env/
+*_env*/
+
+# Flask Related
+flask_session/

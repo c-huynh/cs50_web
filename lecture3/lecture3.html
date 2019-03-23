@@ -88,7 +88,7 @@
     <ul>
       <li>The query after <code class="highlighter-rouge">SELECT</code> indicates what columns are being selected.</li>
       <li>The query after <code class="highlighter-rouge">WHERE</code> indicates constraints on what rows are being selected.</li>
-      <li><code class="highlighter-rouge">*</code> is a wildcard that indicates ‘all'.</li>
+      <li><code class="highlighter-rouge">*</code> is a wildcard that indicates 'all'.</li>
       <li>If a SQL function is passed as a column selector, a column with the return value of that function will be returned. Useful functions include:
         <ul>
           <li><code class="highlighter-rouge">AVG(column)</code> : returns the average value</li>
@@ -97,7 +97,7 @@
           <li><code class="highlighter-rouge">MAX(column)</code> : returns the maximum value</li>
         </ul>
       </li>
-      <li><code class="highlighter-rouge">LIKE</code> is a keyword that takes a template string and returns all rows where the column fits that template. <code class="highlighter-rouge">%</code> is a wildcard that will match any text. In the example above, any row with an ‘a' in the <code class="highlighter-rouge">origin</code> column will be returned.</li>
+      <li><code class="highlighter-rouge">LIKE</code> is a keyword that takes a template string and returns all rows where the column fits that template. <code class="highlighter-rouge">%</code> is a wildcard that will match any text. In the example above, any row with an 'a' in the <code class="highlighter-rouge">origin</code> column will be returned.</li>
       <li><code class="highlighter-rouge">LIMIT</code> sets the maximum number of rows to be returned.</li>
       <li><code class="highlighter-rouge">ORDER BY</code> organizes rows by a given column in either ascending (<code class="highlighter-rouge">ASC</code>) or descending (<code class="highlighter-rouge">DESC</code>) order before returning rows.</li>
       <li><code class="highlighter-rouge">GROUP BY</code> organizes rows by grouping the same values in a given column together.</li>
@@ -129,7 +129,7 @@
 <h3 id="relating-tables-and-compound-queries">Relating Tables and Compound Queries</h3>
 
 <ul>
-  <li>SQL is a relational database, which means that tables inside a database can be related to each other in some way. In order to do so, we can reference, say, the <code class="highlighter-rouge">id</code> column of one table A in some other column of table B. Inside table B, the <code class="highlighter-rouge">id</code> value (which corresponds to table A) is called a ‘foreign key'.</li>
+  <li>SQL is a relational database, which means that tables inside a database can be related to each other in some way. In order to do so, we can reference, say, the <code class="highlighter-rouge">id</code> column of one table A in some other column of table B. Inside table B, the <code class="highlighter-rouge">id</code> value (which corresponds to table A) is called a 'foreign key'.</li>
   <li>
     <p>Here's an example to help demonstrate tables related by foreign keys:</p>
 
@@ -154,13 +154,13 @@
 
     <ul>
       <li><code class="highlighter-rouge">JOIN</code> indicates that tables <code class="highlighter-rouge">flights</code> and <code class="highlighter-rouge">passengers</code> are being queried together.</li>
-      <li><code class="highlighter-rouge">JOIN</code> performs an ‘inner join': only rows where both tables match the query will be returned. In this example, only flights with passengers will be returned.</li>
+      <li><code class="highlighter-rouge">JOIN</code> performs an 'inner join': only rows where both tables match the query will be returned. In this example, only flights with passengers will be returned.</li>
       <li><code class="highlighter-rouge">ON</code> indicates how the two tables are related. In this example, the column <code class="highlighter-rouge">flight_id</code> in <code class="highlighter-rouge">passengers</code> reflects values in the column <code class="highlighter-rouge">id</code> in <code class="highlighter-rouge">flights</code>.</li>
       <li>As before, queries can be constrained with <code class="highlighter-rouge">WHERE</code>.</li>
       <li><code class="highlighter-rouge">LEFT JOIN</code> includes rows from the first table listed even if there is no match (e.g. there are no passengers on that flight). <code class="highlighter-rouge">RIGHT JOIN</code> is analogous (e.g. passengers with no flights).</li>
     </ul>
   </li>
-  <li>When databases get large, it is often useful to ‘index' them, which makes it faster to quickly reference a given column in a table any time a <code class="highlighter-rouge">SELECT</code> query is made. Note, however, that this takes extra space, as well as time. When updating the table, the index must be updated as well. It is therefore unwise to index every column of every table unnecessarily.</li>
+  <li>When databases get large, it is often useful to 'index' them, which makes it faster to quickly reference a given column in a table any time a <code class="highlighter-rouge">SELECT</code> query is made. Note, however, that this takes extra space, as well as time. When updating the table, the index must be updated as well. It is therefore unwise to index every column of every table unnecessarily.</li>
   <li>
     <p>Nested queries are yet another way to make more complex selections:</p>
 
@@ -199,9 +199,9 @@
       <li>By putting single-quotes in smart places, the user cleverly edited the SQL query. <code class="highlighter-rouge">'1'</code> is always equal to <code class="highlighter-rouge">'1'</code>, so it doesn't matter what the user's password is. The account with username <code class="highlighter-rouge">hacker</code> will still be returned.</li>
     </ul>
   </li>
-  <li>In order to prevent these so-called ‘SQL injection attacks', it is important to ‘sanitize' any user input that is going into a SQL command. This means properly ‘escaping' characters like <code class="highlighter-rouge">'</code>, which can drastically change the meaning of the command, so that it is interpeted as simply the <code class="highlighter-rouge">'</code> character. Otherwise, there is the risk of malicious users editing or even deleting entire databases in this way.</li>
+  <li>In order to prevent these so-called 'SQL injection attacks', it is important to 'sanitize' any user input that is going into a SQL command. This means properly 'escaping' characters like <code class="highlighter-rouge">'</code>, which can drastically change the meaning of the command, so that it is interpeted as simply the <code class="highlighter-rouge">'</code> character. Otherwise, there is the risk of malicious users editing or even deleting entire databases in this way.</li>
   <li>
-    <p>Another way that things can go wrong is if two users try to modify or access a database at the same time, and SQL commands get executed in an unexpected order. This is the problem of ‘race conditions'. Consider a case where a bank information is stored in a database and two customers, who share an account, try to make withdrawals simultaneously. The SQL commands that get executed when money is withdrawn might look like this:</p>
+    <p>Another way that things can go wrong is if two users try to modify or access a database at the same time, and SQL commands get executed in an unexpected order. This is the problem of 'race conditions'. Consider a case where a bank information is stored in a database and two customers, who share an account, try to make withdrawals simultaneously. The SQL commands that get executed when money is withdrawn might look like this:</p>
 
     <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="k">SELECT</span> <span class="n">balance</span> <span class="k">FROM</span> <span class="n">bank</span> <span class="k">WHERE</span> <span class="n">user_id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
   <span class="k">UPDATE</span> <span class="n">bank</span> <span class="k">SET</span> <span class="n">balance</span> <span class="o">=</span> <span class="n">balance</span> <span class="o">-</span> <span class="mi">100</span> <span class="k">WHERE</span> <span class="n">user_id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>

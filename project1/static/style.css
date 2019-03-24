@@ -1,0 +1,54 @@
+#login-welcome {
+  margin-bottom: 32px;
+  text-align: center;
+}
+
+#login-row .col-md-6 {
+  height: 100vh;
+}
+@media (min-width: 768px) {
+  #login-row #login-welcome {
+    font-size: 25px;
+  }
+}
+@media (max-width: 767px) {
+  #login-row #login-welcome {
+    font-size: 20px;
+  }
+}
+#login-row h5 {
+  color: white;
+  margin-top: 32px;
+  margin-bottom: 32px;
+}
+#login-row .wrapper {
+  text-align: center;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+#login-row .wrapper .content {
+  display: inline-block;
+  text-align: left;
+}
+
+#login-right {
+  background-color: white;
+}
+
+#login-left {
+  background-color: #502b9b;
+}
+
+.btn {
+  border: 2px solid #502b9b;
+  color: #502b9b;
+  width: 100%;
+}
+
+.btn:hover {
+  background: #502b9b;
+  color: white;
+}
+
+/*# sourceMappingURL=style.css.map */

@@ -1,31 +1,61 @@
-{% extends "layout.html" %}
+<!DOCTYPE html>
+<html>
 
-{% block title %}
-Login
-{% endblock %}
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/style.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <title>Login</title>
+</head>
 
-{% block body %}
-<h1>Log in to Books</h1>
+<body>
+    <div class="container-fluid">
+        <div id="login-row" class="row">
+            <div id="login-right" class="class=col-xs-12 col-md-6 order-md-2">
+                <div class="wrapper">
+                    <div class="content">
+                        <div id="login-welcome">Welcome to Bookclub!</div>
+                        <form action="{{ url_for('login') }}" method="post">
+                            <fieldset>
+                                <div class="form-group">
+                                    <input autocomplete="off" required class="form-control" name="username" placeholder="Username" type="text" autofocus />
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control" required minlength="8" name="password" placeholder="Password" type="password" />
+                                </div>
+                                {% if login_error %}
+                                <div>
+                                    <div class="alert alert-danger" role="alert">
+                                        {{ login_error }}
+                                    </div>
+                                </div>
+                                {% endif %}
+                                <div class="form-group">
+                                    <button id="login-page-login-button" class="btn btn-main-color" type="submit">Log In</button>
+                                </div>
 
-<form action="{{ url_for('login') }}" method="post">
-    <fieldset>
-        <div class="form-group">
-            <input autocomplete="off" required class="form-control" name="username" placeholder="Username" type="text" autofocus />
-        </div>
-        <div class="form-group">
-            <input class="form-control" required minlength="8" name="password" placeholder="Password" type="password" />
-        </div>
-        <div class="form-group">
-            <button class="btn btn-default" type="submit">Log In</button>
-        </div>
-        {% if login_error %}
-        <div>
-            <div class="alert alert-danger" role="alert">
-                {{ login_error }}
+                            </fieldset>
+                        </form>
+                        <form action="{{ url_for('register') }}" method="get">
+                            <button id="login-page-sign-up-button" class="btn btn-main-color" href="{{ url_for('register') }}">Sign Up</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div id="login-left" class="class=col-xs-12 col-md-6 order-md-1">
+                <div class="wrapper">
+                    <div class="content">
+                        <h5>Join the club.</h5>
+                        <h5>Read a book.</h5>
+                        <h5>Share your thoughts.</h5>
+                    </div>
+                </div>
             </div>
         </div>
-        {% endif %}
-    </fieldset>
-</form>
-<a href="{{ url_for('register') }}">Sign Up</a>
-{% endblock %}
+    </div>
+</body>
+
+</html>

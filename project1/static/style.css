@@ -1,3 +1,12 @@
+.container-fluid {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+#behind-nav {
+  height: 80px;
+}
+
 #login-welcome {
   margin-bottom: 32px;
   text-align: center;
@@ -40,15 +49,67 @@
   background-color: #502b9b;
 }
 
-.btn {
+.search-result-card {
+  border-radius: 5px;
+  background-color: #a186d6;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 20px;
+  position: relative;
+}
+.search-result-card a span {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.search-result-card p {
+  margin: 6px 0 0 0;
+}
+
+.search-result-card:hover {
+  background-color: #502b9b;
+  color: white;
+}
+
+.navbar {
+  margin-bottom: 20px;
+  width: 100%;
+  background-color: #502b9b;
+}
+
+.btn-main-light {
   border: 2px solid #502b9b;
   color: #502b9b;
+}
+
+.btn-main-light:hover {
+  background: #502b9b;
+  color: white;
+}
+
+.btn-main-dark {
+  border: 2px solid #a186d6;
+  color: #a186d6;
+}
+
+.btn-main-dark:hover {
+  background: #a186d6;
+  color: white;
+}
+
+#login-page-login-button,
+#login-page-sign-up-button {
   width: 100%;
 }
 
-.btn:hover {
-  background: #502b9b;
-  color: white;
+#index-page-search-button {
+  width: max-content;
+}
+
+#logged-in-user-text {
+  color: #a186d6;
 }
 
 /*# sourceMappingURL=style.css.map */

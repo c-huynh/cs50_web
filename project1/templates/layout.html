@@ -12,21 +12,31 @@
 </head>
 
 <body>
-    <div class="container-fluid">
-        <nav class="navbar navbar-expand-sm navbar-light">
-            <a class="navbar-brand" href="{{ url_for('index') }}">Home</a>
+    <div id="behind-nav">
+    </div>
+    <nav class="navbar navbar-dark navbar-expand-sm fixed-top justify-content-center">
+        <div class="container-fluid">
+            <a class="navbar-brand d-flex w-50 mr-auto" href="{{ url_for('index') }}">Bookclub</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="collapse navbar-collapse w-100" id="navbarNavAltMarkup">
                 {% block navbar %}
                 {% endblock %}
+                <ul class="navbar-nav w-100 justify-content-end">
+                    <span id="logged-in-user-text" class="navbar-text mr-2 mt-2 my-md-0">Welcome {{ username }}</span>
+                    <li class="nav-item">
+                        <form class="form-inline" action="{{ url_for('logout') }}" method="get">
+                            <button class="btn btn-main-dark my-sm-0">Log Out</button>
+                        </form>
+                    </li>
+                </ul>
             </div>
-        </nav>
-        <div class="container">
-            {% block body %}
-            {% endblock %}
         </div>
+    </nav>
+    <div class="container">
+        {% block body %}
+        {% endblock %}
     </div>
 </body>
 

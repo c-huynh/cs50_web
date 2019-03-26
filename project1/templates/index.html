@@ -4,23 +4,18 @@
 Home
 {% endblock %}
 
-{% block navbar %}
-<div class="navbar-nav">
-    <a class="nav-item nav-link" href="#">TEMP</a>
-</div>
-{% endblock %}
-
 {% block body %}
-<h1>Home</h1>
-<a href="{{ url_for('logout') }}">Log Out</a>
-<form action="{{ url_for('search') }}" method="post">
-    <fieldset>
-        <div class="form-group">
-            <input required class="form-control" name="query" type="text" />
-        </div>
-        <div class="form-group">
-            <button class="btn btn-default" type="submit">Search</button>
-        </div>
-    </fieldset>
-</form>
+<div class="search-area">
+    <h3>Search for a book</h3>
+    <form action="{{ url_for('search') }}" method="post">
+        <fieldset>
+            <div class="form-group">
+                <input required class="form-control" name="query" type="text" />
+            </div>
+            <div class="form-group">
+                <button id="index-page-search-button" class="btn btn-main-light" type="submit">Search</button>
+            </div>
+        </fieldset>
+    </form>
+</div>
 {% endblock %}

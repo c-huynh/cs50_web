@@ -4,27 +4,33 @@
 Home
 {% endblock %}
 
+{% block navbar %}
+<ul class="navbar-nav w-100 justify-content-center">
+    <form class="form-inline" action="{{ url_for('search') }}" method="post">
+        <fieldset>
+            <input required class="form-control mr-2 mt-2 my-md-0" name="query" type="text" />
+            <button id="index-page-search-button" class="btn btn-main-dark my-2 my-sm-0" type="submit">Search</button>
+        </fieldset>
+    </form>
+</ul>
+
+{% endblock %}
+
 {% block body %}
-<h1>Home</h1>
-<a href="{{ url_for('logout') }}">Log Out</a>
-<form action="{{ url_for('search') }}" method="post">
-    <fieldset>
-        <div class="form-group">
-            <input required class="form-control" name="query" type="text" />
-        </div>
-        <div class="form-group">
-            <button class="btn btn-default" type="submit">Search</button>
-        </div>
-    </fieldset>
-</form>
-<div>
+<div class="search-results">
+    <h4>Search Results</h4>
     {% for result in search_results %}
-    <a href="{{ url_for('book', book_isbn=result.isbn) }}">
-        <div>
-            <h6>{{ result.title }}</h6>
-            By: {{ result.name }}
-        </div>
-    </a>
+    <div class="search-result-card">
+        <h6>{{ result.title }}</h6>
+        <p>By: {{ result.name }}</p>
+        <p>Year: {{ result.year }}</p>
+        <p>isbn: {{ result.isbn }}</p>
+        <a href="{{ url_for('book', book_isbn=result.isbn) }}"><span></span></a>
+    </div>
+    {% else %}
+    <div class="search-result-none">
+        <p>We couldn't find that book</p>
+    </div>
     {% endfor %}
 </div>
 {% endblock %}

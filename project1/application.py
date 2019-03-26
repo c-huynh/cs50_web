@@ -26,7 +26,7 @@ db = scoped_session(sessionmaker(bind=engine))
 @app.route("/")
 @login_required
 def index():
-    return render_template("index.html")
+    return render_template("index.html", username=session["username"])
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -40,6 +40,7 @@ def login():
         if db_lookup is None or not pwd_context.verify(password, db_lookup.password):
             return render_template("login.html", login_error="Username and/or password invalid")
         session["user_id"] = db_lookup.id
+        session["username"] = username
         return redirect(url_for("index"))
 
 @app.route("/logout")
@@ -68,6 +69,7 @@ def register():
             db.commit()
             session["user_id"] = db.execute("SELECT id FROM users WHERE username = :username",
                                  {"username": username}).fetchone().id
+            session["username"] = username
             return redirect(url_for("index"))
 
 @app.route("/search", methods=["GET", "POST"])
@@ -86,7 +88,7 @@ def search():
                              LOWER(name) LIKE '%{token.lower()}%'"
             books = db.execute(query_string).fetchall()
             search_results += books
-        return render_template("search.html", search_results=search_results)
+        return render_template("search.html", username=session["username"], search_results=search_results)
 
 @app.route("/book/<string:book_isbn>", methods=["GET", "POST"])
 @login_required

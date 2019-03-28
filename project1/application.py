@@ -1,5 +1,6 @@
 import os
 import json
+import requests
 
 from flask import Flask, session, request, redirect, render_template, url_for
 from flask_session import Session
@@ -113,12 +114,28 @@ def book(book_isbn):
     WHERE user_id = :user AND review_isbn = :isbn",
     {"user": session["user_id"], "isbn": book.isbn}).fetchone()
 
-    reviews = db.execute("SELECT rating, review, id \
-    FROM reviews WHERE \
-    review_isbn = :isbn \
+    # get Bookclub reviews
+    reviews = db.execute("SELECT username, rating, review, reviews.id \
+    FROM reviews JOIN users \
+    ON reviews.user_id = users.id \
+    WHERE review_isbn = :isbn \
     ORDER BY id DESC",
-    {"user": session["user_id"], "isbn": book.isbn}).fetchall()
-    return render_template("book.html", book=book, reviews=reviews, reviewed=reviewed)
+    {"isbn": book.isbn}).fetchall()
+
+    # get Goodreads reviews
+    res = requests.get("https://www.goodreads.com/book/review_counts.json",
+                       params={"key": "cBG4XvySgztMGSsmhoYnA", "isbns": book.isbn})
+    goodreads_data = json.loads(res.text)
+
+    print(goodreads_data)
+    # get book cover
+    cover_src = "http://covers.openlibrary.org/b/isbn/" + book.isbn +"-M.jpg"
+    print(cover_src)
+
+    return render_template("book.html",
+                           book=book, reviews=reviews, cover=cover_src,
+                           reviewed=reviewed, goodreads=goodreads_data,)
+
 
 @app.route("/api/<string:book_isbn>")
 def api(book_isbn):
@@ -132,12 +149,19 @@ def api(book_isbn):
                               FROM reviews \
                               WHERE review_isbn = :isbn",
                               {"isbn": book_isbn}).fetchone()
+
+    # format average score
+    if avg_score:
+        avg_score = round(float(avg_score), 1)
+    else:
+        avg_score = "no ratings"
+
     book_info = {
         "title": book.title,
         "author": book.name,
         "year": book.year,
         "isbn": book.isbn,
         "review_count": review_count,
-        "average_score": round(float(avg_score), 1)
+        "average_score": avg_score
     }
     return json.dumps(book_info)

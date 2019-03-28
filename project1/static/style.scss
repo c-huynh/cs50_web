@@ -10,7 +10,7 @@ $accent-color: white;
 }
 // DIVS
 #behind-nav{
-    height: 80px;
+    height: 90px;
 }
 
 #login-welcome {
@@ -41,6 +41,7 @@ $accent-color: white;
 
     .wrapper {
         text-align: center;
+
         // vertially center wrapper in containing div
         position: relative;
         top: 50%;
@@ -61,14 +62,20 @@ $accent-color: white;
     background-color: $main-color;
 }
 
-.search-result-card {
-    border-radius: 5px;
-    background-color: $secondary-color;
-    margin-top: 10px;
-    margin-bottom: 10px;
+%card {
     padding: 20px;
     position: relative;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
 
+}
+
+.search-result-card {
+    @extend %card;
+    background-color: $secondary-color;
+
+    // make div clickable
     a {
         span {
             width: 100%;
@@ -78,16 +85,27 @@ $accent-color: white;
             left: 0;
         }
     }
-
-    p {
-        margin: 6px 0 0 0;
-    }
 }
 
 .search-result-card:hover {
     background-color: $main-color;
     color: $accent-color;
 }
+
+.review-card {
+    @extend %card;
+    background-color: $accent-color;
+    border: 2px solid $secondary-color;
+}
+
+.review-area {
+    margin-top: 30px;
+}
+
+.book-reviews {
+    margin-top: 30px;
+}
+
 // NAVBAR
 .navbar {
     margin-bottom: 20px;
@@ -126,4 +144,18 @@ $accent-color: white;
 #logged-in-user-text {
     // padding-right: 20px;
     color: $secondary-color;
+}
+
+p {
+    margin: 0 0 0 0;
+}
+
+h5 {
+    margin-top: 20px;
+}
+
+// GENERIC CLASSES
+.center-align {
+    display: block;
+    margin: 0 auto;
 }

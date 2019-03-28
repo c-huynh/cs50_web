@@ -1,48 +1,75 @@
 {% extends "layout.html" %}
 
 {% block title %}
-Home
+Book Page
+{% endblock %}
+
+{% block navbar %}
+<ul class="navbar-nav w-100 justify-content-center">
+    <form class="form-inline" action="{{ url_for('search') }}" method="post">
+        <fieldset>
+            <input required class="form-control mr-2 mt-2 my-md-0" name="query" type="text" />
+            <button id="index-page-search-button" class="btn btn-main-dark my-2 my-sm-0" type="submit">Search</button>
+        </fieldset>
+    </form>
+</ul>
 {% endblock %}
 
 {% block body %}
-<h1>Home</h1>
-<a href="{{ url_for('logout') }}">Log Out</a>
-<div>
-    {{ book.title }}
-</div>
-<div>
-    {{ book.name}}
-</div>
-{% if reviewed %}
-Reviewed
-{% else %}
-<form action="{{ url_for('book', book_isbn=book.isbn) }}" method="post">
-    <div class="form-group">
-        <select class="form-control" name="rating">
-            <option value=1>1</option>
-            <option value=2>2</option>
-            <option value=3>3</option>
-            <option value=4>4</option>
-            <option value=5>5</option>
-        </select>
+<div class="row">
+    <div class="col-xs-12 col-md-3 order-md-1">
+        <img class="center-align" src="{{ cover }}" alt="Image not availabe">
+        <h5>{{ book.title }}</h5>
+        <p><b>By:</b> {{ book.name }}</p>
+        <p><b>Year:</b> {{ book.year }}</p>
+        <p><b>isbn:</b> {{ book.isbn }}</p>
+        <p><b>Goodreads rating:</b> {{ goodreads["books"][0]["average_rating"] }}/5</p>
+        <p>({{ goodreads["books"][0]["work_ratings_count"] }} total ratings)</p>
     </div>
-    <div class="form-group">
-        <label for="review">Leave a review:</label>
-        <textarea class="form-control" name="review"></textarea>
+    <div class="col-xs-12 col-md-9 order-md-2">
+        {% if reviewed %}
+        <p><i>You have reviewed this book</i></p>
+        {% else %}
+        <form class="review-area" action="{{ url_for('book', book_isbn=book.isbn) }}" method="post">
+            <div class="form-group">
+                <label for="rating">Rate it:</label>
+                <select id="rating-dropdown" class="form-control" name="rating">
+                    <option value=1>1</option>
+                    <option value=2>2</option>
+                    <option value=3>3</option>
+                    <option value=4>4</option>
+                    <option value=5>5</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="review">Leave a review:</label>
+                <textarea class="form-control" name="review"></textarea>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-main-light">Submit</button>
+            </div>
+        </form>
+        {% endif %}
+        <div class="book-reviews">
+            {% for review in reviews %}
+            <div class="review-card">
+                <div class="row">
+                    <div class="review-username-rating col-xs-12 col-md-3 order-md-1">
+                        <p>{{ review.username }} gave it: {{ review.rating }}/5</p>
+                    </div>
+                    <div class="review-text col-xs-12 col-md-9 order-md-2">
+                        {% if review.review %}
+                        <p>"{{ review.review }}"</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% else %}
+            <div>
+                No Ratings
+            </div>
+            {% endfor %}
+        </div>
     </div>
-    <div class="form-group">
-        <button class="btn btn-primary">Submit</button>
-    </div>
-</form>
-{% endif%}
-{% for review in reviews %}
-<div>
-    {{ review.review }}
-    {{ review.rating }}
 </div>
-{% else %}
-<div>
-    No Ratings
-</div>
-{% endfor %}
 {% endblock %}

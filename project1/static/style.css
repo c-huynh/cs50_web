@@ -4,7 +4,7 @@
 }
 
 #behind-nav {
-  height: 80px;
+  height: 90px;
 }
 
 #login-welcome {
@@ -49,13 +49,16 @@
   background-color: #502b9b;
 }
 
-.search-result-card {
-  border-radius: 5px;
-  background-color: #a186d6;
-  margin-top: 10px;
-  margin-bottom: 10px;
+.review-card, .search-result-card {
   padding: 20px;
   position: relative;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+.search-result-card {
+  background-color: #a186d6;
 }
 .search-result-card a span {
   width: 100%;
@@ -64,13 +67,23 @@
   top: 0;
   left: 0;
 }
-.search-result-card p {
-  margin: 6px 0 0 0;
-}
 
 .search-result-card:hover {
   background-color: #502b9b;
   color: white;
+}
+
+.review-card {
+  background-color: white;
+  border: 2px solid #a186d6;
+}
+
+.review-area {
+  margin-top: 30px;
+}
+
+.book-reviews {
+  margin-top: 30px;
 }
 
 .navbar {
@@ -110,6 +123,19 @@
 
 #logged-in-user-text {
   color: #a186d6;
+}
+
+p {
+  margin: 0 0 0 0;
+}
+
+h5 {
+  margin-top: 20px;
+}
+
+.center-align {
+  display: block;
+  margin: 0 auto;
 }
 
 /*# sourceMappingURL=style.css.map */

@@ -7,7 +7,7 @@ app = Flask(__name__)
 app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
 socketio = SocketIO(app)
 
-chatrooms = {}
+chatrooms = {"chat1": [{"user": "Bob", "text": "hello"}, {"user": "John", "text": "Whats up"}]}
 
 @app.route("/")
 def index():
@@ -22,3 +22,13 @@ def create_chatroom(data):
     new_chatroom = data["chatroom"]
     chatrooms[new_chatroom] = []
     emit("new chatroom", {'chatrooms': chatrooms, 'newChatroom': new_chatroom}, broadcast=True)
+
+@socketio.on("new message")
+def new_message(data):
+    name = data["chatroom"]
+    message = {
+        "user": data["user"],
+        "text": data["text"]
+    }
+    chatrooms[name].append(message)
+    emit("broadcast new message", {'chatrooms': chatrooms, 'new_message': message}, broadcast=True)

@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     var username;
-    var chatroomCurrent;
+    var chatroomSelected;
     var chatroomList;
     var socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port);
 
@@ -16,7 +16,22 @@ document.addEventListener('DOMContentLoaded', () => {
         div.dataset.name = name;
         div.className = 'chatroom-card';
         div.onclick = () => {
-            console.log("hello world");
+            if (chatroomSelected !== name) {
+
+                // delete contents of message area
+                document.querySelector('#message-area').innerHTML = '';
+
+                // display contents of selected chatroom
+                chatroomSelected = name;
+                document.querySelector('#chatroom-heading').innerHTML = name;
+                var numMessages = chatroomList[name].length;
+                for (var i = 0; i < numMessages; i++) {
+                    let div = document.createElement('div');
+                    div.innerHTML = `${chatroomList[name][i]["user"]} said: ${chatroomList[name][i]["text"]}`
+                    div.className = 'message';
+                    document.querySelector('#message-area').append(div)
+                }
+            }
         }
         return div;
     }
@@ -48,19 +63,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // set username
     document.querySelector('#set-username-btn').onclick = () => {
-        const username = document.querySelector('#username').value;
+        username = document.querySelector('#username').value;
         localStorage.setItem('username', username);
     }
 
-    // create chatroom
     socket.on('connect', () => {
+
+        // create chatroom
         document.querySelector('#create-chatroom-btn').onclick = () => {
             const newChatroom = document.querySelector('#new-chatroom').value;
             if (!(newChatroom in chatroomList)) {
-                socket.emit('create chatroom', {
-                    'chatroom': newChatroom
-                })
+                socket.emit('create chatroom', {'chatroom': newChatroom})
             }
+        }
+
+        // send new message
+        document.querySelector('#send-message-btn').onclick = () => {
+            const text = document.querySelector('#new-message').value;
+            const newMessage = {
+                'user': username,
+                'chatroom': chatroomSelected,
+                'text': text
+            };
+            socket.emit('new message', newMessage)
         }
     })
 
@@ -70,10 +95,17 @@ document.addEventListener('DOMContentLoaded', () => {
         if (noChatrooms) {
             noChatrooms.remove();
         }
-
         chatroomList = data.chatrooms;
-
-        const div = createClickableChatroom(data.newChatroom)
+        var div = createClickableChatroom(data.newChatroom)
         document.querySelector('#chatrooms').prepend(div);
+    })
+
+    // display new massage
+    socket.on('broadcast new message', data => {
+        chatroomList = data.chatrooms;
+        var div = document.createElement('div');
+        div.innerHTML = `${data["new_message"]["user"]} said: ${data["new_message"]["text"]}`
+        div.className = 'message';
+        document.querySelector('#message-area').append(div);
     })
 })

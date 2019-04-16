@@ -3,28 +3,67 @@
 
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>
     <script src="{{ url_for('static', filename='index.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <title>Welcome to Flack</title>
 </head>
 
 <body>
-    <div id="set-username">
-        <input type="text" id="username" autofocus autocomplete="off" placeholder="Enter Display Name">
-        <button type="button" id="set-username-btn">Set username</button>
-    </div>
-    <div id="chatroom-creation">
-        <input type="text" id="new-chatroom" autofocus autocomplete="off" placeholder="New Chatroom">
-        <button type="button" id="create-chatroom-btn" >Create</button>
-    </div>
-    <div id="chatrooms">
-    </div>
-    <div id="current-chatroom">
-        <h3 id="chatroom-heading">Choose a chatroom</h3>
-        <div id="message-area">
+    <div id="welcome-page" class="container-fluid">
+        <div id="welcome-area" class="center">
+            <h4>Sign in.</h4>
+            <h4>Create and join chatrooms.</h4>
+            <h4>Chat!</h4>
+            <div id="set-username" class="input-group my-3">
+                <input id="username" type="text" class="form-control" autocomplete="off" placeholder="Enter display name" aria-label="new chatroom" aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                    <button id="set-username-btn" class="btn btn-outline-primary" type="button">Enter</button>
+                </div>
+            </div>
         </div>
-        <input type="text" id="new-message">
-        <button type="button" id="send-message-btn">Send</button>
+    </div>
+    <div id="logged-in-page" class="container">
+        <div class="row center">
+            <div id="left-col" class="col-xs-12 col-md-4 order-md-1">
+                <div id="chatroom-list-area">
+                    <h4>Chatrooms</h4>
+                    <div id="new-chatroom-input-area" class="input-group my-3">
+                        <input id="new-chatroom" type="text" class="form-control" autocomplete="off" placeholder="new chatroom" aria-label="new chatroom" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                            <button id="create-chatroom-btn" class="btn btn-outline-primary" type="button">Create</button>
+                        </div>
+                    </div>
+                    <div id="chatrooms">
+                    </div>
+                </div>
+            </div>
+            <div id="right-col" class="col-xs-12 col-md-8 order-md-2">
+                <div id="chatroom-not-selected">
+                    <p id="chatroom-not-selected-text" class="center">Select a chatroom</p>
+                </div>
+                <div id="current-chatroom-area">
+                    <h4 id="chatroom-heading">Choose a chatroom</h4>
+                    <div id="change-username-area" class="input-group my-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">Display name</span>
+                        </div>
+                        <input id="change-username" type="text" class="form-control" autocomplete="off" placeholder="anonymous" aria-label="Username" aria-describedby="basic-addon1">
+                    </div>
+                    <div id="message-area">
+                    </div>
+                    <div id="new-message-input-area" class="input-group my-3">
+                        <input id="new-message" type="text" class="form-control" autocomplete="off" placeholder="new message" aria-label="new chatroom" aria-describedby="basic-addon2">
+                        <button id="send-message-btn" class="btn btn-outline-primary" type="button">Send</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 

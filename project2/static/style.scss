@@ -1,0 +1,114 @@
+// color variables
+$main-color-dark: #138fa5;
+$main-color-light: #57cbe0;
+$main-color-opposite: white;
+
+// div
+.center {
+    position: relative;
+    transform: translate(-50%,-50%);
+    top: 50%;
+    left: 50%;
+}
+
+.row {
+    width: 100%;
+}
+
+%card {
+    padding: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.chatroom-card {
+    @extend %card;
+    background-color: $main-color-dark;
+}
+
+.chatroom-card:hover {
+    background-color: $main-color-light;
+}
+
+.chatroom-card-selected {
+    @extend %card;
+    background-color: $main-color-light;
+}
+
+#welcome-page {
+    margin: 0;
+    height: 100vh;
+    background-color: lightgreen;
+
+    #welcome-area {
+        display: inline-block;
+    }
+
+    h4 {
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+}
+
+#logged-in-page {
+    height: 100vh;
+    width: 100%;
+    display: none;
+}
+
+#left-col, #right-col {
+    height: 80vh;
+    background-color: yellow;
+}
+
+#chatroom-list-area {
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+}
+
+#current-chatroom-area {
+    height: 100%;
+    display: none;
+    flex-flow: column;
+}
+
+#chatroom-not-selected {
+    height: 100%;
+    width: 100%;
+    background-color: pink;
+
+    p {
+        display: inline-block;
+    }
+}
+
+#new-chatroom-input-area, #change-username-area, #new-message-input-area{
+    background-color: red;
+    min-height: 38px;
+}
+
+#chatrooms, #message-area {
+    background-color: green;
+    overflow-y: auto;
+    flex-grow: 1;
+}
+
+#new-message-input-area {
+    margin-top: auto;
+}
+
+// components
+.btn-outline-primary {
+    border-color: $main-color-dark;
+    color: $main-color-dark;
+    // height: 100%;
+}
+
+.btn-outline-primary:hover {
+    background-color: $main-color-dark;
+    border-color: $main-color-dark;
+    color: $main-color-opposite;
+}

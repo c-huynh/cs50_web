@@ -18,12 +18,19 @@ document.addEventListener('DOMContentLoaded', () => {
         div.onclick = () => {
             if (chatroomSelected !== name) {
 
+                // make the clicked card color different
+                previousSelected = document.querySelector('.chatroom-card-selected');
+                if (previousSelected) {
+                    previousSelected.className = 'chatroom-card';
+                }
+                div.className = 'chatroom-card-selected';
+
                 // delete contents of message area
                 document.querySelector('#message-area').innerHTML = '';
 
                 // display contents of selected chatroom
                 chatroomSelected = name;
-                document.querySelector('#chatroom-heading').innerHTML = name;
+                document.querySelector('#chatroom-heading').innerHTML = `Current room: ${name}`;
                 var numMessages = chatroomList[name].length;
                 for (var i = 0; i < numMessages; i++) {
                     let div = document.createElement('div');
@@ -32,6 +39,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     document.querySelector('#message-area').append(div)
                 }
             }
+            document.querySelector('#new-message').focus();
+            document.querySelector('#chatroom-not-selected').style.display = 'none';
+            document.querySelector('#current-chatroom-area').style.display = 'flex';
         }
         return div;
     }
@@ -39,7 +49,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // remember username when user visits page
     username = localStorage.getItem('username');
     if (username) {
-        document.querySelector('#username').value = username;
+        // document.querySelector('#username').value = username;
+        document.querySelector('#change-username').value = username;
+        document.querySelector('#welcome-page').style.display = 'none';
+        document.querySelector('#logged-in-page').style.display = 'block';
     }
 
     // get list of channels
@@ -49,8 +62,8 @@ document.addEventListener('DOMContentLoaded', () => {
         chatroomList = JSON.parse(request.responseText);
         if (Object.keys(chatroomList).length === 0) {
             const div = document.createElement('div')
-            div.innerHTML = 'No chatrooms'
-            div.id = 'no-chatrooms-div'
+            div.innerHTML = 'No chatrooms';
+            div.id = 'no-chatrooms-div';
             document.querySelector('#chatrooms').prepend(div);
         } else {
             for (var chatroom in chatroomList) {
@@ -61,10 +74,47 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     request.send();
 
+    // configure buttons
+    var setUsernameInput = document.querySelector('#username');
+    setUsernameInput.addEventListener('keyup', event => {
+        if (event.keyCode === 13) {
+            document.querySelector('#set-username-btn').click();
+        }
+    })
+    var newMassageInput = document.querySelector('#new-message');
+    newMassageInput.addEventListener('keyup', event => {
+        if (event.keyCode === 13) {
+            document.querySelector('#send-message-btn').click();
+        }
+    })
+    var newChatroomInput = document.querySelector('#new-chatroom');
+    newChatroomInput.addEventListener('keyup', event => {
+        if (event.keyCode === 13) {
+            document.querySelector('#create-chatroom-btn').click();
+        }
+    })
+
+    // configure change-username input
+    var changeUsernameInput = document.querySelector('#change-username');
+    changeUsernameInput.addEventListener('keyup', event => {
+        if (changeUsernameInput.value.length > 0) {
+            username = changeUsernameInput.value;
+            localStorage.setItem('username', username);
+        }
+        else {
+            username = 'anonymous';
+            localStorage.setItem('username', username);
+        }
+    })
+
     // set username
     document.querySelector('#set-username-btn').onclick = () => {
         username = document.querySelector('#username').value;
-        localStorage.setItem('username', username);
+        if (username.length > 0) {
+            localStorage.setItem('username', username);
+            document.querySelector('#welcome-page').style.display = 'none';
+            document.querySelector('#logged-in-page').style.display = 'block';
+        }
     }
 
     socket.on('connect', () => {
@@ -72,20 +122,24 @@ document.addEventListener('DOMContentLoaded', () => {
         // create chatroom
         document.querySelector('#create-chatroom-btn').onclick = () => {
             const newChatroom = document.querySelector('#new-chatroom').value;
-            if (!(newChatroom in chatroomList)) {
+            if (!(newChatroom in chatroomList) && (newChatroom.length > 0)) {
                 socket.emit('create chatroom', {'chatroom': newChatroom})
             }
+            document.querySelector('#new-chatroom').value = '';
         }
 
         // send new message
         document.querySelector('#send-message-btn').onclick = () => {
             const text = document.querySelector('#new-message').value;
-            const newMessage = {
-                'user': username,
-                'chatroom': chatroomSelected,
-                'text': text
-            };
-            socket.emit('new message', newMessage)
+            if (text.length > 0 && chatroomSelected) {
+                const newMessage = {
+                    'user': username,
+                    'chatroom': chatroomSelected,
+                    'text': text
+                };
+                socket.emit('new message', newMessage)
+                document.querySelector('#new-message').value = '';
+            }
         }
     })
 
@@ -98,14 +152,17 @@ document.addEventListener('DOMContentLoaded', () => {
         chatroomList = data.chatrooms;
         var div = createClickableChatroom(data.newChatroom)
         document.querySelector('#chatrooms').prepend(div);
+        // div.click();
     })
 
     // display new massage
     socket.on('broadcast new message', data => {
         chatroomList = data.chatrooms;
-        var div = document.createElement('div');
-        div.innerHTML = `${data["new_message"]["user"]} said: ${data["new_message"]["text"]}`
-        div.className = 'message';
-        document.querySelector('#message-area').append(div);
+        if (chatroomSelected === data["new_message"]["chatroom"]) {
+            var div = document.createElement('div');
+            div.innerHTML = `${data["new_message"]["user"]} said: ${data["new_message"]["text"]}`
+            div.className = 'message';
+            document.querySelector('#message-area').append(div);
+        }
     })
 })

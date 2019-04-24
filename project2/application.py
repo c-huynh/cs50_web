@@ -29,7 +29,8 @@ def new_message(data):
     message = {
         "user": data["user"],
         "chatroom": data["chatroom"],
-        "text": data["text"]
+        "text": data["text"],
+        "datetime": data["datetime"]
     }
     chatrooms[name].append(message)
     emit("broadcast new message", {'chatrooms': chatrooms, 'new_message': message}, broadcast=True)

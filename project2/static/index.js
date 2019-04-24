@@ -34,11 +34,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 var numMessages = chatroomList[name].length;
                 for (var i = 0; i < numMessages; i++) {
                     let div = document.createElement('div');
-                    div.innerHTML = `${chatroomList[name][i]["user"]} said: ${chatroomList[name][i]["text"]}`
+                    div.innerHTML = `(${chatroomList[name][i]["datetime"]}) ${chatroomList[name][i]["user"]} said: ${chatroomList[name][i]["text"]}`
                     div.className = 'message';
                     document.querySelector('#message-area').append(div)
                 }
             }
+            var messageArea = document.querySelector('#message-area');
+            messageArea.scrollTop = messageArea.scrollHeight;
             document.querySelector('#new-message').focus();
             document.querySelector('#chatroom-not-selected').style.display = 'none';
             document.querySelector('#current-chatroom-area').style.display = 'flex';
@@ -49,8 +51,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // remember username when user visits page
     username = localStorage.getItem('username');
     if (username) {
-        // document.querySelector('#username').value = username;
         document.querySelector('#change-username').value = username;
+
+        // bypass welcome page if user visited before
         document.querySelector('#welcome-page').style.display = 'none';
         document.querySelector('#logged-in-page').style.display = 'block';
     }
@@ -132,10 +135,12 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelector('#send-message-btn').onclick = () => {
             const text = document.querySelector('#new-message').value;
             if (text.length > 0 && chatroomSelected) {
+                const datetime = new Date();
                 const newMessage = {
                     'user': username,
                     'chatroom': chatroomSelected,
-                    'text': text
+                    'text': text,
+                    'datetime': datetime.toUTCString()
                 };
                 socket.emit('new message', newMessage)
                 document.querySelector('#new-message').value = '';
@@ -152,7 +157,6 @@ document.addEventListener('DOMContentLoaded', () => {
         chatroomList = data.chatrooms;
         var div = createClickableChatroom(data.newChatroom)
         document.querySelector('#chatrooms').prepend(div);
-        // div.click();
     })
 
     // display new massage
@@ -160,9 +164,11 @@ document.addEventListener('DOMContentLoaded', () => {
         chatroomList = data.chatrooms;
         if (chatroomSelected === data["new_message"]["chatroom"]) {
             var div = document.createElement('div');
-            div.innerHTML = `${data["new_message"]["user"]} said: ${data["new_message"]["text"]}`
+            div.innerHTML = `(${data["new_message"]["datetime"]}) ${data["new_message"]["user"]} said: ${data["new_message"]["text"]}`
             div.className = 'message';
-            document.querySelector('#message-area').append(div);
+            var messageArea = document.querySelector('#message-area');
+            messageArea.append(div);
+            messageArea.scrollTop = messageArea.scrollHeight;
         }
     })
 })

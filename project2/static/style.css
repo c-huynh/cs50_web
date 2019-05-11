@@ -7,6 +7,8 @@
 
 .row {
   width: 100%;
+  margin: 0;
+  border-radius: 5px;
 }
 
 .chatroom-card-selected, .chatroom-card {
@@ -18,7 +20,7 @@
 }
 
 .chatroom-card {
-  background-color: #138fa5;
+  background-color: #58a8b7;
 }
 
 .chatroom-card:hover {
@@ -32,7 +34,7 @@
 #welcome-page {
   margin: 0;
   height: 100vh;
-  background-color: lightgreen;
+  background-color: #57cbe0;
 }
 #welcome-page #welcome-area {
   display: inline-block;
@@ -49,14 +51,31 @@
 }
 
 #left-col, #right-col {
-  height: 80vh;
-  background-color: yellow;
+  height: 100vh;
+  padding: 0;
 }
 
-#chatroom-list-area {
-  height: 100%;
+#chatroom-list-area, #chat-area {
+  height: 80vh;
   display: flex;
   flex-flow: column;
+  padding: 20px;
+  background-color: #a5eaf7;
+  border-radius: 5px;
+}
+
+@media (min-width: 768px) {
+  #chatroom-list-area {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+}
+
+@media (min-width: 768px) {
+  #chat-area {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
 }
 
 #current-chatroom-area {
@@ -68,21 +87,24 @@
 #chatroom-not-selected {
   height: 100%;
   width: 100%;
-  background-color: pink;
 }
 #chatroom-not-selected p {
   display: inline-block;
 }
 
 #new-chatroom-input-area, #change-username-area, #new-message-input-area {
-  background-color: red;
   min-height: 38px;
 }
 
 #chatrooms, #message-area {
-  background-color: green;
   overflow-y: auto;
   flex-grow: 1;
+}
+
+#message-area {
+  background-color: white;
+  padding: 10px;
+  border-radius: 5px;
 }
 
 #new-message-input-area {
@@ -90,13 +112,13 @@
 }
 
 .btn-outline-primary {
-  border-color: #138fa5;
-  color: #138fa5;
+  border-color: #58a8b7;
+  color: #58a8b7;
 }
 
 .btn-outline-primary:hover {
-  background-color: #138fa5;
-  border-color: #138fa5;
+  background-color: #58a8b7;
+  border-color: #58a8b7;
   color: white;
 }
 

@@ -1,6 +1,7 @@
 // color variables
-$main-color-dark: #138fa5;
+$main-color-dark: #58a8b7;
 $main-color-light: #57cbe0;
+$main-color-ultralight: #a5eaf7;
 $main-color-opposite: white;
 
 // div
@@ -13,6 +14,9 @@ $main-color-opposite: white;
 
 .row {
     width: 100%;
+    margin: 0;
+    // background-color: $main-color-ultralight;
+    border-radius: 5px;
 }
 
 %card {
@@ -40,7 +44,7 @@ $main-color-opposite: white;
 #welcome-page {
     margin: 0;
     height: 100vh;
-    background-color: lightgreen;
+    background-color: $main-color-light;
 
     #welcome-area {
         display: inline-block;
@@ -59,14 +63,31 @@ $main-color-opposite: white;
 }
 
 #left-col, #right-col {
+    height: 100vh;
+    padding: 0;
+}
+
+#chatroom-list-area, #chat-area {
     height: 80vh;
-    background-color: yellow;
+    display: flex;
+    flex-flow: column;
+    padding: 20px;
+    background-color: $main-color-ultralight;
+    border-radius: 5px;
 }
 
 #chatroom-list-area {
-    height: 100%;
-    display: flex;
-    flex-flow: column;
+    @media (min-width: 768px) {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+}
+
+#chat-area {
+    @media (min-width: 768px) {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+    }
 }
 
 #current-chatroom-area {
@@ -78,7 +99,6 @@ $main-color-opposite: white;
 #chatroom-not-selected {
     height: 100%;
     width: 100%;
-    background-color: pink;
 
     p {
         display: inline-block;
@@ -86,14 +106,18 @@ $main-color-opposite: white;
 }
 
 #new-chatroom-input-area, #change-username-area, #new-message-input-area{
-    background-color: red;
     min-height: 38px;
 }
 
 #chatrooms, #message-area {
-    background-color: green;
     overflow-y: auto;
     flex-grow: 1;
+}
+
+#message-area {
+    background-color: $main-color-opposite;
+    padding: 10px;
+    border-radius: 5px;
 }
 
 #new-message-input-area {
@@ -104,7 +128,6 @@ $main-color-opposite: white;
 .btn-outline-primary {
     border-color: $main-color-dark;
     color: $main-color-dark;
-    // height: 100%;
 }
 
 .btn-outline-primary:hover {

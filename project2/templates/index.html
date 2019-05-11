@@ -21,7 +21,7 @@
             <h4>Create and join chatrooms.</h4>
             <h4>Chat!</h4>
             <div id="set-username" class="input-group my-3">
-                <input id="username" type="text" class="form-control" autocomplete="off" placeholder="Enter display name" aria-label="new chatroom" aria-describedby="basic-addon2">
+                <input id="username" type="text" class="form-control" autofocus autocomplete="off" placeholder="Enter display name" aria-label="new chatroom" aria-describedby="basic-addon2">
                 <div class="input-group-append">
                     <button id="set-username-btn" class="btn btn-outline-primary" type="button">Enter</button>
                 </div>
@@ -29,9 +29,31 @@
         </div>
     </div>
     <div id="logged-in-page" class="container">
-        <div class="row center">
+        <div class="row">
+            <div id="right-col" class="col-xs-12 col-md-8 order-md-2">
+                <div id="chat-area" class="center">
+                    <div id="chatroom-not-selected">
+                        <p id="chatroom-not-selected-text" class="center">Select a chatroom</p>
+                    </div>
+                    <div id="current-chatroom-area">
+                        <h4 id="chatroom-heading">Choose a chatroom</h4>
+                        <div id="change-username-area" class="input-group my-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">Display name</span>
+                            </div>
+                            <input id="change-username" type="text" class="form-control" autocomplete="off" placeholder="anonymous" aria-label="Username" aria-describedby="basic-addon1">
+                        </div>
+                        <div id="message-area">
+                        </div>
+                        <div id="new-message-input-area" class="input-group my-3">
+                            <input id="new-message" type="text" class="form-control" autocomplete="off" placeholder="new message" aria-label="new chatroom" aria-describedby="basic-addon2">
+                            <button id="send-message-btn" class="btn btn-outline-primary" type="button">Send</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div id="left-col" class="col-xs-12 col-md-4 order-md-1">
-                <div id="chatroom-list-area">
+                <div id="chatroom-list-area" class="center">
                     <h4>Chatrooms</h4>
                     <div id="new-chatroom-input-area" class="input-group my-3">
                         <input id="new-chatroom" type="text" class="form-control" autocomplete="off" placeholder="new chatroom" aria-label="new chatroom" aria-describedby="basic-addon2">
@@ -40,26 +62,6 @@
                         </div>
                     </div>
                     <div id="chatrooms">
-                    </div>
-                </div>
-            </div>
-            <div id="right-col" class="col-xs-12 col-md-8 order-md-2">
-                <div id="chatroom-not-selected">
-                    <p id="chatroom-not-selected-text" class="center">Select a chatroom</p>
-                </div>
-                <div id="current-chatroom-area">
-                    <h4 id="chatroom-heading">Choose a chatroom</h4>
-                    <div id="change-username-area" class="input-group my-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1">Display name</span>
-                        </div>
-                        <input id="change-username" type="text" class="form-control" autocomplete="off" placeholder="anonymous" aria-label="Username" aria-describedby="basic-addon1">
-                    </div>
-                    <div id="message-area">
-                    </div>
-                    <div id="new-message-input-area" class="input-group my-3">
-                        <input id="new-message" type="text" class="form-control" autocomplete="off" placeholder="new message" aria-label="new chatroom" aria-describedby="basic-addon2">
-                        <button id="send-message-btn" class="btn btn-outline-primary" type="button">Send</button>
                     </div>
                 </div>
             </div>

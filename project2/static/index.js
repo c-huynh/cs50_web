@@ -16,34 +16,34 @@ document.addEventListener('DOMContentLoaded', () => {
         div.dataset.name = name;
         div.className = 'chatroom-card';
         div.onclick = () => {
-            if (chatroomSelected !== name) {
 
-                // make the clicked card color different
-                previousSelected = document.querySelector('.chatroom-card-selected');
-                if (previousSelected) {
-                    previousSelected.className = 'chatroom-card';
-                }
-                div.className = 'chatroom-card-selected';
-
-                // delete contents of message area
-                document.querySelector('#message-area').innerHTML = '';
-
-                // display contents of selected chatroom
-                chatroomSelected = name;
-                document.querySelector('#chatroom-heading').innerHTML = `Current room: ${name}`;
-                var numMessages = chatroomList[name].length;
-                for (var i = 0; i < numMessages; i++) {
-                    let div = document.createElement('div');
-                    div.innerHTML = `(${chatroomList[name][i]["datetime"]}) ${chatroomList[name][i]["user"]} said: ${chatroomList[name][i]["text"]}`
-                    div.className = 'message';
-                    document.querySelector('#message-area').append(div)
-                }
+            // make the clicked card color different
+            let previousSelected = document.querySelector('.chatroom-card-selected');
+            if (previousSelected) {
+                previousSelected.className = 'chatroom-card';
             }
+            div.className = 'chatroom-card-selected';
+
+            // delete contents of message area
+            document.querySelector('#message-area').innerHTML = '';
+
+            // display contents of selected chatroom
+            chatroomSelected = name;
+            document.querySelector('#chatroom-heading').innerHTML = `Current room: ${name}`;
+            var numMessages = chatroomList[name].length;
+            for (var i = 0; i < numMessages; i++) {
+                let div = document.createElement('div');
+                div.innerHTML = `(${chatroomList[name][i]["datetime"]}) ${chatroomList[name][i]["user"]} said: ${chatroomList[name][i]["text"]}`
+                div.className = 'message';
+                document.querySelector('#message-area').append(div)
+            }
+
             var messageArea = document.querySelector('#message-area');
             messageArea.scrollTop = messageArea.scrollHeight;
-            document.querySelector('#new-message').focus();
             document.querySelector('#chatroom-not-selected').style.display = 'none';
             document.querySelector('#current-chatroom-area').style.display = 'flex';
+            document.querySelector('#new-message').focus();
+            localStorage.setItem('rememberedChatroom', chatroomSelected);
         }
         return div;
     }
@@ -68,10 +68,18 @@ document.addEventListener('DOMContentLoaded', () => {
             div.innerHTML = 'No chatrooms';
             div.id = 'no-chatrooms-div';
             document.querySelector('#chatrooms').prepend(div);
-        } else {
+        }
+        else {
             for (var chatroom in chatroomList) {
                 const div = createClickableChatroom(chatroom)
                 document.querySelector('#chatrooms').prepend(div);
+            }
+
+            // remember chatroom when user visits page
+            var rememberedChatroom = localStorage.getItem('rememberedChatroom');
+            if (rememberedChatroom) {
+                let remembered = document.querySelectorAll(`[data-name=${rememberedChatroom}]`);
+                remembered[0].click();
             }
         }
     }

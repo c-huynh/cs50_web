@@ -1,126 +1,135 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-    <head>
-        <meta charset="utf-8">
-        <title>Menu</title>
-    </head>
-    <body>
-        <div id="menu-items">
-            <h2>Our Menu</h2>
-            <h3>Pizzas</h3>
-            {% for pizza_type in pizza_types %}
-                <h4>{{ pizza_type.name }}</h4>
-                <table>
-                    <tr>
-                        <th></th>
-                        <th>Small</th>
-                        <th>Large</th>
-                    </tr>
-                    <tr>
-                        <td>Cheese</td>
-                        <td>{{ pizza_type.sm_topping_0 }}</td>
-                        <td>{{ pizza_type.lg_topping_0 }}</td>
-                        <td><button>+</button></td>
-                    </tr>
-                    <tr>
-                        <td>1 Topping</td>
-                        <td>{{ pizza_type.sm_topping_1 }}</td>
-                        <td>{{ pizza_type.lg_topping_1 }}</td>
-                        <td><button>+</button></td>
-                    </tr>
-                    <tr>
-                        <td>2 Toppings</td>
-                        <td>{{ pizza_type.sm_topping_2 }}</td>
-                        <td>{{ pizza_type.lg_topping_2 }}</td>
-                        <td><button>+</button></td>
-                    </tr>
-                    <tr>
-                        <td>3 Toppings</td>
-                        <td>{{ pizza_type.sm_topping_3 }}</td>
-                        <td>{{ pizza_type.lg_topping_3 }}</td>
-                        <td><button>+</button></td>
-                    </tr>
-                    <tr>
-                        <td>Special</td>
-                        <td>{{ pizza_type.sm_topping_special }}</td>
-                        <td>{{ pizza_type.lg_topping_special }}</td>
-                        <td><button>+</button></td>
-                    </tr>
-                </table>
-            {% endfor %}
-            <h3>Pizza Toppings</h3>
-            <ul>
-                {% for pizza_topping in pizza_toppings %}
-                    <li>{{ pizza_topping }}</li>
-                {% endfor %}
-            </ul>
-            <h3>Subs</h3>
-            <table>
-                <tr>
-                    <th></th>
-                    <th>Small</th>
-                    <th>Large</th>
-                </tr>
-                {% for sub_type in sub_types %}
-                    <tr>
-                        <td>{{ sub_type.name }}</td>
-                        <td>{% if sub_type.price_sm %} {{ sub_type.price_sm }} {% else %} - {% endif %}</td>
-                        <td>{% if sub_type.price_lg %} {{ sub_type.price_lg }} {% else %} - {% endif %}</td>
-                        <td><button>+</button></td>
-                    </tr>
-                {% endfor %}
-            </table>
-            <h3>Sub Toppings</h3>
-            <table>
-                <tr>
-                    <th></th>
-                    <th>Small</th>
-                    <th>Large</th>
-                </tr>
-                {% for sub_topping in sub_toppings %}
-                    <tr>
-                        <td>{{ sub_topping.name }}</td>
-                        <td>+ {{ sub_topping.price_sm }}</td>
-                        <td>+ {{ sub_topping.price_lg }}</td>
-                    </tr>
-                {% endfor %}
-            </table>
-            <h3>Pasta</h3>
-            <table>
-                {% for pasta in pastas %}
-                <tr>
-                    <td>{{ pasta.name }}</td>
-                    <td>{{ pasta.price }}</td>
-                    <td><button>+</button></td>
-                </tr>
-                {% endfor %}
-            </table>
-            <h3>Salads</h3>
-            <table>
-                {% for salad in salads %}
-                    <tr>
-                        <td>{{ salad.name }}</td>
-                        <td>{{ salad.price }}</td>
-                        <td><button>+</button></td>
-                    </tr>
-                {% endfor %}
-            </table>
-            <h3>Dinner Platters</h3>
-            <table>
-                <tr>
-                    <th></th>
-                    <th>Small</th>
-                    <th>Large</th>
-                </tr>
-                {% for platter in platters %}
-                    <tr>
-                        <td>{{ platter.name }}</td>
-                        <td>{{ platter.price_sm }}</td>
-                        <td>{{ platter.price_lg }}</td>
-                        <td><button>+</button></td>
-                    </tr>
-                {% endfor %}
-            </table>
-        </div>
-    </body>
-</html>
+{% extends "main/header.html" %}
+
+{% block title %}
+Menu
+{% endblock %}
+
+{% block body %}
+
+<p>logged in as: {{ username }}</p>
+<a href="{% url 'logout' %}">Log Out</a>
+
+<p>{{ sub.type.name }}: ${{ sub.get_price }}</p>
+
+
+<div id="shopping-cart">
+    <h3>Shopping Cart</h3>
+</div>
+<div id="menu-items">
+    <h2>Our Menu</h2>
+    <h3>Pizzas</h3>
+    {% for pizza_type in pizza_types %}
+    <h4>{{ pizza_type.name }}</h4>
+    <table>
+        <tr>
+            <th></th>
+            <th>Small</th>
+            <th>Large</th>
+        </tr>
+        <tr>
+            <td>Cheese</td>
+            <td>{{ pizza_type.sm_topping_0 }}</td>
+            <td>{{ pizza_type.lg_topping_0 }}</td>
+            <td><button>+</button></td>
+        </tr>
+        <tr>
+            <td>1 Topping</td>
+            <td>{{ pizza_type.sm_topping_1 }}</td>
+            <td>{{ pizza_type.lg_topping_1 }}</td>
+            <td><button>+</button></td>
+        </tr>
+        <tr>
+            <td>2 Toppings</td>
+            <td>{{ pizza_type.sm_topping_2 }}</td>
+            <td>{{ pizza_type.lg_topping_2 }}</td>
+            <td><button>+</button></td>
+        </tr>
+        <tr>
+            <td>3 Toppings</td>
+            <td>{{ pizza_type.sm_topping_3 }}</td>
+            <td>{{ pizza_type.lg_topping_3 }}</td>
+            <td><button>+</button></td>
+        </tr>
+        <tr>
+            <td>Special</td>
+            <td>{{ pizza_type.sm_topping_special }}</td>
+            <td>{{ pizza_type.lg_topping_special }}</td>
+            <td><button>+</button></td>
+        </tr>
+    </table>
+    {% endfor %}
+    <h3>Pizza Toppings</h3>
+    <ul>
+        {% for pizza_topping in pizza_toppings %}
+        <li>{{ pizza_topping }}</li>
+        {% endfor %}
+    </ul>
+    <h3>Subs</h3>
+    <table>
+        <tr>
+            <th></th>
+            <th>Small</th>
+            <th>Large</th>
+        </tr>
+        {% for sub_type in sub_types %}
+        <tr>
+            <td>{{ sub_type.name }}</td>
+            <td>{% if sub_type.price_sm %} {{ sub_type.price_sm }} {% else %} - {% endif %}</td>
+            <td>{% if sub_type.price_lg %} {{ sub_type.price_lg }} {% else %} - {% endif %}</td>
+            <td><button>+</button></td>
+        </tr>
+        {% endfor %}
+    </table>
+    <h3>Sub Toppings</h3>
+    <table>
+        <tr>
+            <th></th>
+            <th>Small</th>
+            <th>Large</th>
+        </tr>
+        {% for sub_topping in sub_toppings %}
+        <tr>
+            <td>{{ sub_topping.name }}</td>
+            <td>+ {{ sub_topping.price_sm }}</td>
+            <td>+ {{ sub_topping.price_lg }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <h3>Pasta</h3>
+    <table>
+        {% for pasta in pastas %}
+        <tr>
+            <td>{{ pasta.name }}</td>
+            <td>{{ pasta.price }}</td>
+            <td><button>+</button></td>
+        </tr>
+        {% endfor %}
+    </table>
+    <h3>Salads</h3>
+    <table>
+        {% for salad in salads %}
+        <tr>
+            <td>{{ salad.name }}</td>
+            <td>{{ salad.price }}</td>
+            <td><button>+</button></td>
+        </tr>
+        {% endfor %}
+    </table>
+    <h3>Dinner Platters</h3>
+    <table>
+        <tr>
+            <th></th>
+            <th>Small</th>
+            <th>Large</th>
+        </tr>
+        {% for platter in platters %}
+        <tr>
+            <td>{{ platter.name }}</td>
+            <td>{{ platter.price_sm }}</td>
+            <td>{{ platter.price_lg }}</td>
+            <td><button>+</button></td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}

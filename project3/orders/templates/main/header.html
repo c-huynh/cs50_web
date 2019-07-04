@@ -1,11 +1,24 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-    <head>
-        <meta charset="utf-8">
-        <title>{% block title %}{% endblock %}</title>
-    </head>
-    <body>
-        {% block body %}
-        {% endblock %}
-    </body>
-</html>
+{% extends "main/layout.html" %}
+
+{% block navbar-main %}
+
+<nav class="navbar navbar-expand-sm navbar-light fixed-top">
+    <a class="navbar-brand" href="#">Pinochio's</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+            {% block navbar-items %}
+            {% endblock %}
+        </div>
+    </div>
+</nav>
+{% endblock %}
+
+{% block container %}
+<div class="container">
+    {% block body %}
+    {% endblock %}
+</div>
+{% endblock %}

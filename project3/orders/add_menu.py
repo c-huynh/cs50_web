@@ -11,7 +11,7 @@ def populate():
 
     pizza_types = [
         {
-            "name": "Regular Pizza",
+            "name": "Regular",
             "sm_topping_0": 12.20,
             "sm_topping_1": 13.20,
             "sm_topping_2": 14.70,
@@ -24,7 +24,7 @@ def populate():
             "lg_topping_special": 25.45
             },
         {
-            "name": "Sicilian Pizza",
+            "name": "Sicilian",
             "sm_topping_0": 23.45,
             "sm_topping_1": 25.45,
             "sm_topping_2": 27.45,

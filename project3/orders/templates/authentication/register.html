@@ -4,11 +4,15 @@
 Register
 {% endblock %}
 
+{% block navbar-items %}
+{% endblock %}
+
 {% block body %}
-Register
+<div class="navbar-space">
+</div>
 <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">Register</button>
+    <button class="btn btn-btn-outline" type="submit">Register</button>
 </form>
 {% endblock %}

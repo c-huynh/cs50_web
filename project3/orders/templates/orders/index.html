@@ -1,135 +1,383 @@
 {% extends "main/header.html" %}
+{% load class_name %}
 
 {% block title %}
 Menu
 {% endblock %}
 
+{% block navbar-items %}
+<span class="navbar-text">Welcome, {{ username }}</span>
+<a class="nav-item nav-link" href="{% url 'logout' %}">Log out</a>
+{% endblock %}
+
 {% block body %}
-
-<p>logged in as: {{ username }}</p>
-<a href="{% url 'logout' %}">Log Out</a>
-
-<p>{{ sub.type.name }}: ${{ sub.get_price }}</p>
-
-
-<div id="shopping-cart">
-    <h3>Shopping Cart</h3>
+<div class="navbar-space">
 </div>
-<div id="menu-items">
-    <h2>Our Menu</h2>
-    <h3>Pizzas</h3>
-    {% for pizza_type in pizza_types %}
-    <h4>{{ pizza_type.name }}</h4>
-    <table>
-        <tr>
-            <th></th>
-            <th>Small</th>
-            <th>Large</th>
-        </tr>
-        <tr>
-            <td>Cheese</td>
-            <td>{{ pizza_type.sm_topping_0 }}</td>
-            <td>{{ pizza_type.lg_topping_0 }}</td>
-            <td><button>+</button></td>
-        </tr>
-        <tr>
-            <td>1 Topping</td>
-            <td>{{ pizza_type.sm_topping_1 }}</td>
-            <td>{{ pizza_type.lg_topping_1 }}</td>
-            <td><button>+</button></td>
-        </tr>
-        <tr>
-            <td>2 Toppings</td>
-            <td>{{ pizza_type.sm_topping_2 }}</td>
-            <td>{{ pizza_type.lg_topping_2 }}</td>
-            <td><button>+</button></td>
-        </tr>
-        <tr>
-            <td>3 Toppings</td>
-            <td>{{ pizza_type.sm_topping_3 }}</td>
-            <td>{{ pizza_type.lg_topping_3 }}</td>
-            <td><button>+</button></td>
-        </tr>
-        <tr>
-            <td>Special</td>
-            <td>{{ pizza_type.sm_topping_special }}</td>
-            <td>{{ pizza_type.lg_topping_special }}</td>
-            <td><button>+</button></td>
-        </tr>
-    </table>
-    {% endfor %}
-    <h3>Pizza Toppings</h3>
-    <ul>
-        {% for pizza_topping in pizza_toppings %}
-        <li>{{ pizza_topping }}</li>
-        {% endfor %}
-    </ul>
-    <h3>Subs</h3>
-    <table>
-        <tr>
-            <th></th>
-            <th>Small</th>
-            <th>Large</th>
-        </tr>
-        {% for sub_type in sub_types %}
-        <tr>
-            <td>{{ sub_type.name }}</td>
-            <td>{% if sub_type.price_sm %} {{ sub_type.price_sm }} {% else %} - {% endif %}</td>
-            <td>{% if sub_type.price_lg %} {{ sub_type.price_lg }} {% else %} - {% endif %}</td>
-            <td><button>+</button></td>
-        </tr>
-        {% endfor %}
-    </table>
-    <h3>Sub Toppings</h3>
-    <table>
-        <tr>
-            <th></th>
-            <th>Small</th>
-            <th>Large</th>
-        </tr>
-        {% for sub_topping in sub_toppings %}
-        <tr>
-            <td>{{ sub_topping.name }}</td>
-            <td>+ {{ sub_topping.price_sm }}</td>
-            <td>+ {{ sub_topping.price_lg }}</td>
-        </tr>
-        {% endfor %}
-    </table>
-    <h3>Pasta</h3>
-    <table>
-        {% for pasta in pastas %}
-        <tr>
-            <td>{{ pasta.name }}</td>
-            <td>{{ pasta.price }}</td>
-            <td><button>+</button></td>
-        </tr>
-        {% endfor %}
-    </table>
-    <h3>Salads</h3>
-    <table>
-        {% for salad in salads %}
-        <tr>
-            <td>{{ salad.name }}</td>
-            <td>{{ salad.price }}</td>
-            <td><button>+</button></td>
-        </tr>
-        {% endfor %}
-    </table>
-    <h3>Dinner Platters</h3>
-    <table>
-        <tr>
-            <th></th>
-            <th>Small</th>
-            <th>Large</th>
-        </tr>
-        {% for platter in platters %}
-        <tr>
-            <td>{{ platter.name }}</td>
-            <td>{{ platter.price_sm }}</td>
-            <td>{{ platter.price_lg }}</td>
-            <td><button>+</button></td>
-        </tr>
-        {% endfor %}
-    </table>
+<div class="row">
+    <div class="col-xs-12 col-md-8">
+        <div id="menu-items">
+
+            <!-- <h3>Sub Toppings</h3>
+            <table>
+                <tr>
+                    <th></th>
+                    <th>Small</th>
+                    <th>Large</th>
+                </tr>
+                {% for sub_topping in sub_toppings %}
+                <tr>
+                    <td>{{ sub_topping.name }}</td>
+                    <td>+ {{ sub_topping.price_sm }}</td>
+                    <td>+ {{ sub_topping.price_lg }}</td>
+                </tr>
+                {% endfor %}
+            </table> -->
+
+            <h3 class="menu-heading">Pizzas</h3>
+            {% for pizza in pizzas %}
+            <div class="table-menu-items">
+                <div class="col-item-name">
+                    <h4>{{ pizza.name }}</h4>
+                </div>
+                <div class="col-item-price">
+                    <div>
+                        <h6>Small</h6>
+                    </div>
+                </div>
+                <div class="col-item-price">
+                    <div>
+                        <h6>Large</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="table-menu-items">
+                <div class="col-item-name">
+                    <p>Cheese</p>
+                </div>
+                <div class="col-item-price">
+                    <div>
+                        <p>{{ pizza.sm_topping_0 }}</p>
+                    </div>
+                    <a href="{% url 'add' pizza|class_name pizza.id 'sm' %}">
+                        <i class="fas fa-plus-circle"></i>
+                    </a>
+                </div>
+                <div class="col-item-price">
+                    <div>
+                        <p>{{ pizza.lg_topping_0 }}</p>
+                    </div>
+                    <a href="{% url 'add' pizza|class_name pizza.id 'lg' %}">
+                        <i class="fas fa-plus-circle"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="table-menu-items">
+                <div class="col-item-name">
+                    <p>1 Topping</p>
+                </div>
+                <div class="col-item-price">
+                    <div>
+                        <p>{{ pizza.sm_topping_1 }}</p>
+                    </div>
+                    <a href="{% url 'add' pizza|class_name pizza.id 'sm' %}">
+                        <i class="fas fa-plus-circle"></i>
+                    </a>
+                </div>
+                <div class="col-item-price">
+                    <div>
+                        <p>{{ pizza.lg_topping_1 }}</p>
+                    </div>
+                    <a href="{% url 'add' pizza|class_name pizza.id 'lg' %}">
+                        <i class="fas fa-plus-circle"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="table-menu-items">
+                <div class="col-item-name">
+                    <p>2 Toppings</p>
+                </div>
+                <div class="col-item-price">
+                    <div>
+                        <p>{{ pizza.sm_topping_2 }}</p>
+                    </div>
+                    <a href="{% url 'add' pizza|class_name pizza.id 'sm' %}">
+                        <i class="fas fa-plus-circle"></i>
+                    </a>
+                </div>
+                <div class="col-item-price">
+                    <div>
+                        <p>{{ pizza.lg_topping_2 }}</p>
+                    </div>
+                    <a href="{% url 'add' pizza|class_name pizza.id 'lg' %}">
+                        <i class="fas fa-plus-circle"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="table-menu-items">
+                <div class="col-item-name">
+                    <p>3 Toppings</p>
+                </div>
+                <div class="col-item-price">
+                    <div>
+                        <p>{{ pizza.sm_topping_3 }}</p>
+                    </div>
+                    <a href="{% url 'add' pizza|class_name pizza.id 'sm' %}">
+                        <i class="fas fa-plus-circle"></i>
+                    </a>
+                </div>
+                <div class="col-item-price">
+                    <div>
+                        <p>{{ pizza.lg_topping_3 }}</p>
+                    </div>
+                    <a href="{% url 'add' pizza|class_name pizza.id 'lg' %}">
+                        <i class="fas fa-plus-circle"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="table-menu-items">
+                <div class="col-item-name">
+                    <p>Special</p>
+                </div>
+                <div class="col-item-price">
+                    <div>
+                        <p>{{ pizza.sm_topping_special }}</p>
+                    </div>
+                    <a href="{% url 'add' pizza|class_name pizza.id 'sm' %}">
+                        <i class="fas fa-plus-circle"></i>
+                    </a>
+                </div>
+                <div class="col-item-price">
+                    <div>
+                        <p>{{ pizza.lg_topping_special }}</p>
+                    </div>
+                    <a href="{% url 'add' pizza|class_name pizza.id 'lg' %}">
+                        <i class="fas fa-plus-circle"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="table-menu-items">
+                <div class="col-item-name">
+                    <p></p>
+                </div>
+                <div class="col-item-price">
+                    <div>
+                        <p></p>
+                    </div>
+                </div>
+                <div class="col-item-price">
+                    <div>
+                        <p></p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+            <div class="row">
+                <div class="col-xs-12 col-md-6">
+                    <div id="pizza-topping-list">
+                        <p>Pick your toppings:</p>
+                        {% for topping in pizza_toppings %}
+                        <input type="checkbox" class="pizza-topping" value="{{ topping.id }}"> {{ topping }}<br>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-6">
+                    <div id="pizza-size">
+                        <p>Select a size:</p>
+                        <input type="radio" name="pizza-size" value="sm"> Small<br>
+                        <input type="radio" name="pizza-size" value="lg"> Large<br>
+                    </div>
+                    <div id="topping-button-area">
+                        <a class="yes-no-link" href="#">
+                            <button type="button" class="yes-no-btn btn btn-success">Confirm</button>
+                        </a>
+                        <a class="yes-no-link" href="#">
+                            <button type="button" class="yes-no-btn btn btn-danger">Cancel</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="menu-heading">Subs</h3>
+            <div class="table-menu-items">
+                <div class="col-item-name">
+                </div>
+                <div class="col-item-price">
+                    <div>
+                        <h6>Small</h6>
+                    </div>
+                </div>
+                <div class="col-item-price">
+                    <div>
+                        <h6>Large</h6>
+                    </div>
+                </div>
+            </div>
+            {% for sub in subs %}
+            <div class="table-menu-items">
+                <div class="col-item-name">
+                    <p>{{ sub.name }}</p>
+                </div>
+                <div class="col-item-price">
+                    {% if sub.price_sm %}
+                    <div>
+                        <p>
+                            {{ sub.price_sm }}
+                        </p>
+                    </div>
+                    <a href="{% url 'add' sub|class_name sub.id 'sm' %}">
+                        <i class="fas fa-plus-circle"></i>
+                    </a>
+                    {% else %}
+                    <div>
+                        <p> - </p>
+                    </div>
+                    {% endif %}
+                </div>
+                <div class="col-item-price">
+                    {% if sub.price_lg %}
+                    <div>
+                        <p>
+                            {{ sub.price_lg }}
+                        </p>
+                    </div>
+                    <a href="{% url 'add' sub|class_name sub.id 'lg' %}">
+                        <i class="fas fa-plus-circle"></i>
+                    </a>
+                    {% else %}
+                    <div>
+                        <p> - </p>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+
+            <h3 class="menu-heading">Pastas</h3>
+            {% for pasta in pastas %}
+            <div class="table-menu-items">
+                <div class="col-item-name">
+                    <p>{{ pasta.name }}</p>
+                </div>
+                <div class="col-item-price">
+                    <div>
+                        <p>
+                            {{ pasta.price }}
+                        </p>
+                    </div>
+                    <a href="{% url 'add' pasta|class_name pasta.id 'None' %}">
+                        <i class="fas fa-plus-circle"></i>
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+
+            <h3 class="menu-heading">Salads</h3>
+            {% for salad in salads %}
+            <div class="table-menu-items">
+                <div class="col-item-name">
+                    <p>{{ salad.name }}</p>
+                </div>
+                <div class="col-item-price">
+                    <div>
+                        <p>{{ salad.price }}</p>
+                    </div>
+                    <a href="{% url 'add' salad|class_name salad.id 'None' %}">
+                        <i class="fas fa-plus-circle"></i>
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+
+            <h3 class="menu-heading">Dinner Platters</h3>
+            <div class="table-menu-items">
+                <div class="col-item-name">
+                </div>
+                <div class="col-item-price">
+                    <div>
+                        <h6>Small</h6>
+                    </div>
+                </div>
+                <div class="col-item-price">
+                    <div>
+                        <h6>Large</h6>
+                    </div>
+                </div>
+            </div>
+            {% for platter in platters %}
+            <div class="table-menu-items">
+                <div class="col-item-name">
+                    <p>{{ platter.name }}</p>
+                </div>
+                <div class="col-item-price">
+                    <div>
+                        <p>{{ platter.price_sm }}</p>
+                    </div>
+                    <a href="{% url 'add' platter|class_name platter.id 'sm' %}">
+                        <i class="fas fa-plus-circle"></i>
+                    </a>
+                </div>
+                <div class="col-item-price">
+                    <div>
+                        <p>{{ platter.price_lg }}</p>
+                    </div>
+                    <a href="{% url 'add' platter|class_name platter.id 'lg' %}">
+                        <i class="fas fa-plus-circle"></i>
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-md-4">
+        <div id="shopping-cart">
+            <h3 class="menu-heading">Your Order</h3>
+            <div class="table-menu-items">
+                <div class="col-item-name">
+                    <h6>Item</h6>
+                </div>
+                <div class="col-item-price">
+                    <div>
+                        <h6>$</h6>
+                    </div>
+                </div>
+            </div>
+            {% for item in order.get_items %}
+            <div class="table-menu-items">
+                <div class="col-item-name">
+                    <p>{{ item }}</p>
+                </div>
+                <div class="col-item-price">
+                    <div>
+                        {{ item.price }}
+                    </div>
+                    <a href="{% url 'delete_item' item|class_name item.id %}">
+                        <i class="fas fa-times-circle"></i>
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+            <div class="table-menu-items">
+                <div class="col-item-name">
+                    <p>Total:</p>
+                </div>
+                <div class="col-item-price">
+                    <div>
+                        <p>{{ order.calculate_total_price }}</p>
+                    </div>
+                </div>
+            </div>
+            <div id="button-area">
+                <a class="yes-no-link" href="#">
+                    <button type="button" class="yes-no-btn btn btn-success">Submit Order</button>
+                </a>
+                <a class="yes-no-link" href="{% url 'delete_order' %}">
+                    <button type="button" class="yes-no-btn btn btn-danger">Delete Cart</button>
+                </a>
+            </div>
+        </div>
+    </div>
 </div>
+
 {% endblock %}

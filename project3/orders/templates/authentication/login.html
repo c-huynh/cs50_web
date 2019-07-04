@@ -1,13 +1,37 @@
-{% extends "main/header.html" %}
+{% extends "main/layout.html" %}
 
 {% block title %}
-Login
+Welcome to Pinochio's
 {% endblock %}
 
-{% block body %}
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Log in</button>
-</form>
+{% block container %}
+<div id="login-page" class="row">
+    <div id="login-info-pane" class="col-sm-12 col-md-6">
+        <div class="center">
+            <h1>Welcome to Pinochio's</h1>
+            <h4>The best pizzaria on campus</h4>
+            <h6>Order online.</h6>
+            <h6>Never leave your dorm.</h6>
+        </div>
+    </div>
+    <div id="login-form-pane" class="col-sm-12 col-md-6">
+        <div class="center">
+            {% if message %}
+            <div class="alert alert-danger my-1" role="alert">
+                {{ message }}
+            </div>
+            {% endif %}
+            <form action="{% url 'login' %}" method="post">
+                {% csrf_token %}
+                <input required class="form-control my-1 my-md-2" name="username" placeholder="username" type="text">
+                <input required class="form-control my-1 my-md-2" name="password" placeholder="password" type="password">
+                <button class="btn btn-main-light my-1 mb-md-2" type="submit" name="login-btn">Log In</button>
+            </form>
+            <form action="{% url 'register' %}" method="get">
+                {% csrf_token %}
+                <button id="login-page-signup-btn" class="btn btn-main-light my-1 mb-md-2">Sign Up</button>
+            </form>
+        </div>
+    </div>
+</div>
 {% endblock %}

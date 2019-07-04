@@ -1,0 +1,174 @@
+// COLOR VARIABLES
+$main-color-1: red;
+$main-color-2: #169647;
+$success-color: #5cb85c;
+$delete-color: #d9534f;
+
+// DIV
+
+#login-page {
+    height: 100vh;
+    width: 100vw;
+
+    #login-form-pane,
+    #login-info-pane {
+        position: relative;
+
+        @media (min-width: 768px) {
+            height: 100%;
+            h1, h4, h6 {
+                margin-bottom: 20px;
+                margin-top: 20px;
+            }
+            button {
+                width: 50%;
+            }
+        }
+        @media (max-width: 767px) {
+            // height: 50%;
+            h1 {
+                font-size: 24px;
+            }
+            h4 {
+                font-size: 20px;
+            }
+            button {
+                width: 100%;
+            }
+        }
+    }
+
+    #login-form-pane {
+        background-color: $main-color-2;
+        .center {
+            width: 60%;
+        }
+
+        @media (max-width: 767px) {
+            height: 60%;
+
+            .center {
+                width: 80%;
+            }
+        }
+    }
+
+    #login-info-pane {
+        background-color: white;
+        .center {
+            width: 100%;
+        }
+
+        @media (max-width: 767px) {
+            height: 40%;
+        }
+    }
+}
+
+.center {
+    // centers content within parent div
+    // requires parent div to have position: relative
+    padding: 10px;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.navbar-space {
+    height: 56px;
+    margin-bottom: 20px;
+}
+
+.menu-heading {
+    background-color: $main-color-1;
+    padding: 6px 10px 6px 10px;
+    margin: 0px 0px 10px 0px;
+    font-weight: bolder;
+}
+
+.table-menu-items {
+    display: flex;
+    width: 100%;
+    padding: 6px 0px 0px 10px;
+}
+
+.col-item-name {
+    flex: 1;
+    p {
+        margin-bottom: 6px;
+        @media (max-width: 320px){
+            font-size: 14px;
+        }
+    }
+}
+
+.col-item-price {
+    width: 75px;
+    margin-left: 16px;
+    display: flex;
+    justify-content: space-between;
+
+    div {
+        display: inline-block;
+        width: 65%;
+        // background-color: yellow;
+        text-align: right;
+    }
+    p {
+        width: 100%;
+        margin-bottom: 6px;
+
+        @media (max-width: 320px){
+            font-size: 14px;
+        }
+    }
+    a {
+        // background-color: orange;
+        display: inline-block;
+    }
+
+}
+
+// BUTTONS
+.btn-main-light {
+    border: 2px solid white !important;
+    color: white !important;
+}
+
+.btn-main-light:hover {
+    background: $main-color-1;
+    color: white;
+}
+
+// NAVBAR
+.navbar {
+    background-color: $main-color-2;
+
+}
+
+// FONTAWESOME
+.fa-times-circle {
+    color: $delete-color;
+}
+
+.fa-plus-circle {
+    color: $success-color;
+}
+
+// INPUTS
+input {
+    margin-bottom: 16px;
+}
+
+// LINKS
+.yes-no-link {
+    display: block;
+
+    .yes-no-btn {
+        width: 100%;
+        margin-top: 10px;
+        // margin-bottom: 10px;
+    }
+}

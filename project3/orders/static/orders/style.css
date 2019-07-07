@@ -126,6 +126,10 @@
   display: inline-block;
 }
 
+#pizza-confirmation-box {
+  display: none;
+}
+
 .btn-main-light {
   border: 2px solid white !important;
   color: white !important;
@@ -134,6 +138,13 @@
 .btn-main-light:hover {
   background: red;
   color: white;
+}
+
+.btn-fa {
+  background: none;
+  border: none;
+  padding: 0;
+  height: 24px;
 }
 
 .navbar {

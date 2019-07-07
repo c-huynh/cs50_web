@@ -22,7 +22,6 @@ def index(request):
         "salads": SaladType.objects.all(),
         "platters": PlatterType.objects.all(),
     }
-    print(context["order"])
     return render(request, "orders/index.html", context)
 
 def register(request):
@@ -75,47 +74,61 @@ def logout_view(request):
 
 @login_required
 def add(request, item_type, item_id, size):
-    current_order = Order.objects.get(pk=request.session["current_order"])
-    new_item_type = eval(item_type + ".objects.get(pk=" + str(item_id) + ")")
+    if request.method == 'POST':
+        current_order = Order.objects.get(pk=request.session["current_order"])
+        new_item_type = eval(item_type + ".objects.get(pk=" + str(item_id) + ")")
 
-    if item_type == "PlatterType":
-        new_item = eval(item_type[:-4] +
-                        "(order=current_order, type=new_item_type, size=size)")
-    elif item_type == "PastaType":
-        new_item = eval(item_type[:-4] +
-                        "(order=current_order, type=new_item_type)")
-    elif item_type == "SaladType":
-        new_item = eval(item_type[:-4] +
-                        "(order=current_order, type=new_item_type)")
-    elif item_type == "SubType":
-        new_item = eval(item_type[:-4] +
-                        "(order=current_order, type=new_item_type, size=size)")
-        new_item.save()
-    elif item_type == "PizzaType":
-        new_item = eval(item_type[:-4] +
-                        "(order=current_order, type=new_item_type, size=size)")
-        new_item.save()
+        if item_type == "PlatterType":
+            new_item = eval(item_type[:-4] +
+                            "(order=current_order, type=new_item_type, size=size)")
+        elif item_type == "PastaType":
+            new_item = eval(item_type[:-4] +
+                            "(order=current_order, type=new_item_type)")
+        elif item_type == "SaladType":
+            new_item = eval(item_type[:-4] +
+                            "(order=current_order, type=new_item_type)")
+        elif item_type == "SubType":
+            new_item = eval(item_type[:-4] +
+                            "(order=current_order, type=new_item_type, size=size)")
+            new_item.save()
+        elif item_type == "PizzaType":
+            new_item = eval(item_type[:-4] +
+                            "(order=current_order, type=new_item_type, size=size)")
+            new_item.save()
 
-    new_item.calculate_price()
-    new_item.save()
+        new_item.calculate_price()
+        new_item.save()
     return HttpResponseRedirect(reverse("index"))
 
 @login_required
 def delete_item(request, item_type, item_id):
-    current_order = Order.objects.get(pk=request.session["current_order"])
-    item = eval(item_type + ".objects.get(order=current_order, pk=" + str(item_id) + ")")
-    item.delete()
+    if request.method == 'POST':
+        current_order = Order.objects.get(pk=request.session["current_order"])
+        item = eval(item_type + ".objects.get(order=current_order, pk=" + str(item_id) + ")")
+        item.delete()
     return HttpResponseRedirect(reverse("index"))
 
 @login_required
 def delete_order(request):
-    current_order = Order.objects.get(pk=request.session["current_order"])
-    items = current_order.get_items()
-    for item in items:
-        item.delete()
+    if request.method == 'POST':
+        current_order = Order.objects.get(pk=request.session["current_order"])
+        items = current_order.get_items()
+        for item in items:
+            item.delete()
     return HttpResponseRedirect(reverse("index"))
 
 @login_required
 def submit_order(request):
     #TODO
     pass
+
+@login_required
+def toppings(request):
+    if request.method == 'POST':
+        selected_toppings = request.POST.getlist('pizza-toppings')
+        print("toppings:")
+        print(selected_toppings)
+        type = request.POST['pizza-type']
+        print("type:")
+        print(type)
+    return HttpResponseRedirect(reverse("index"))

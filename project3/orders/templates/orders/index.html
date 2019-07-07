@@ -33,300 +33,339 @@ Menu
                 {% endfor %}
             </table> -->
 
-            <h3 class="menu-heading">Pizzas</h3>
-            {% for pizza in pizzas %}
-            <div class="table-menu-items">
-                <div class="col-item-name">
-                    <h4>{{ pizza.name }}</h4>
-                </div>
-                <div class="col-item-price">
-                    <div>
-                        <h6>Small</h6>
+            <div id="pizza-section">
+                <h3 class="menu-heading">Pizzas</h3>
+                {% for pizza in pizzas %}
+                <div class="table-menu-items">
+                    <div class="col-item-name">
+                        <h4>{{ pizza.name }}</h4>
+                    </div>
+                    <div class="col-item-price">
+                        <div>
+                            <h6>Small</h6>
+                        </div>
+                    </div>
+                    <div class="col-item-price">
+                        <div>
+                            <h6>Large</h6>
+                        </div>
                     </div>
                 </div>
-                <div class="col-item-price">
-                    <div>
-                        <h6>Large</h6>
+                <div class="table-menu-items">
+                    <div class="col-item-name">
+                        <p>Cheese {{ pizza.id }}</p>
+                    </div>
+                    <div class="col-item-price">
+                        <div>
+                            <p>{{ pizza.sm_topping_0 }}</p>
+                        </div>
+                        <button class="add-pizza btn-fa" data-type="{{ pizza.id }}" data-size="sm">
+                            <i class="fas fa-plus-circle" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                    <div class="col-item-price">
+                        <div>
+                            <p>{{ pizza.lg_topping_0 }}</p>
+                        </div>
+                        <button class="add-pizza btn-fa" data-type="{{ pizza.id }}" data-size="lg">
+                            <i class="fas fa-plus-circle" aria-hidden="true"></i>
+                        </button>
                     </div>
                 </div>
-            </div>
-            <div class="table-menu-items">
-                <div class="col-item-name">
-                    <p>Cheese</p>
-                </div>
-                <div class="col-item-price">
-                    <div>
-                        <p>{{ pizza.sm_topping_0 }}</p>
+                <div class="table-menu-items">
+                    <div class="col-item-name">
+                        <p>1 Topping</p>
                     </div>
-                    <a href="{% url 'add' pizza|class_name pizza.id 'sm' %}">
-                        <i class="fas fa-plus-circle"></i>
-                    </a>
-                </div>
-                <div class="col-item-price">
-                    <div>
-                        <p>{{ pizza.lg_topping_0 }}</p>
+                    <div class="col-item-price">
+                        <div>
+                            <p>{{ pizza.sm_topping_1 }}</p>
+                        </div>
+                        <button class="add-pizza btn-fa" data-type="{{ pizza.id }}" data-size="sm">
+                            <i class="fas fa-plus-circle" aria-hidden="true"></i>
+                        </button>
                     </div>
-                    <a href="{% url 'add' pizza|class_name pizza.id 'lg' %}">
-                        <i class="fas fa-plus-circle"></i>
-                    </a>
-                </div>
-            </div>
-            <div class="table-menu-items">
-                <div class="col-item-name">
-                    <p>1 Topping</p>
-                </div>
-                <div class="col-item-price">
-                    <div>
-                        <p>{{ pizza.sm_topping_1 }}</p>
+                    <div class="col-item-price">
+                        <div>
+                            <p>{{ pizza.lg_topping_1 }}</p>
+                        </div>
+                        <button class="add-pizza btn-fa" data-type="{{ pizza.id }}" data-size="lg">
+                            <i class="fas fa-plus-circle" aria-hidden="true"></i>
+                        </button>
                     </div>
-                    <a href="{% url 'add' pizza|class_name pizza.id 'sm' %}">
-                        <i class="fas fa-plus-circle"></i>
-                    </a>
                 </div>
-                <div class="col-item-price">
-                    <div>
-                        <p>{{ pizza.lg_topping_1 }}</p>
+                <div class="table-menu-items">
+                    <div class="col-item-name">
+                        <p>2 Toppings</p>
                     </div>
-                    <a href="{% url 'add' pizza|class_name pizza.id 'lg' %}">
-                        <i class="fas fa-plus-circle"></i>
-                    </a>
-                </div>
-            </div>
-            <div class="table-menu-items">
-                <div class="col-item-name">
-                    <p>2 Toppings</p>
-                </div>
-                <div class="col-item-price">
-                    <div>
-                        <p>{{ pizza.sm_topping_2 }}</p>
+                    <div class="col-item-price">
+                        <div>
+                            <p>{{ pizza.sm_topping_2 }}</p>
+                        </div>
+                        <button class="add-pizza btn-fa" data-type="{{ pizza.id }}" data-size="sm">
+                            <i class="fas fa-plus-circle" aria-hidden="true"></i>
+                        </button>
                     </div>
-                    <a href="{% url 'add' pizza|class_name pizza.id 'sm' %}">
-                        <i class="fas fa-plus-circle"></i>
-                    </a>
-                </div>
-                <div class="col-item-price">
-                    <div>
-                        <p>{{ pizza.lg_topping_2 }}</p>
+                    <div class="col-item-price">
+                        <div>
+                            <p>{{ pizza.lg_topping_2 }}</p>
+                        </div>
+                        <button class="add-pizza btn-fa" data-type="{{ pizza.id }}" data-size="lg">
+                            <i class="fas fa-plus-circle" aria-hidden="true"></i>
+                        </button>
                     </div>
-                    <a href="{% url 'add' pizza|class_name pizza.id 'lg' %}">
-                        <i class="fas fa-plus-circle"></i>
-                    </a>
                 </div>
-            </div>
-            <div class="table-menu-items">
-                <div class="col-item-name">
-                    <p>3 Toppings</p>
-                </div>
-                <div class="col-item-price">
-                    <div>
-                        <p>{{ pizza.sm_topping_3 }}</p>
+                <div class="table-menu-items">
+                    <div class="col-item-name">
+                        <p>3 Toppings</p>
                     </div>
-                    <a href="{% url 'add' pizza|class_name pizza.id 'sm' %}">
-                        <i class="fas fa-plus-circle"></i>
-                    </a>
-                </div>
-                <div class="col-item-price">
-                    <div>
-                        <p>{{ pizza.lg_topping_3 }}</p>
+                    <div class="col-item-price">
+                        <div>
+                            <p>{{ pizza.sm_topping_3 }}</p>
+                        </div>
+                        <button class="add-pizza btn-fa" data-type="{{ pizza.id }}" data-size="sm">
+                            <i class="fas fa-plus-circle" aria-hidden="true"></i>
+                        </button>
                     </div>
-                    <a href="{% url 'add' pizza|class_name pizza.id 'lg' %}">
-                        <i class="fas fa-plus-circle"></i>
-                    </a>
-                </div>
-            </div>
-            <div class="table-menu-items">
-                <div class="col-item-name">
-                    <p>Special</p>
-                </div>
-                <div class="col-item-price">
-                    <div>
-                        <p>{{ pizza.sm_topping_special }}</p>
+                    <div class="col-item-price">
+                        <div>
+                            <p>{{ pizza.lg_topping_3 }}</p>
+                        </div>
+                        <button class="add-pizza btn-fa" data-type="{{ pizza.id }}" data-size="lg">
+                            <i class="fas fa-plus-circle" aria-hidden="true"></i>
+                        </button>
                     </div>
-                    <a href="{% url 'add' pizza|class_name pizza.id 'sm' %}">
-                        <i class="fas fa-plus-circle"></i>
-                    </a>
                 </div>
-                <div class="col-item-price">
-                    <div>
-                        <p>{{ pizza.lg_topping_special }}</p>
+                <div class="table-menu-items">
+                    <div class="col-item-name">
+                        <p>Special</p>
                     </div>
-                    <a href="{% url 'add' pizza|class_name pizza.id 'lg' %}">
-                        <i class="fas fa-plus-circle"></i>
-                    </a>
+                    <div class="col-item-price">
+                        <div>
+                            <p>{{ pizza.sm_topping_special }}</p>
+                        </div>
+                        <button class="add-pizza btn-fa" data-type="{{ pizza.id }}" data-size="sm">
+                            <i class="fas fa-plus-circle" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                    <div class="col-item-price">
+                        <div>
+                            <p>{{ pizza.lg_topping_special }}</p>
+                        </div>
+                        <button class="add-pizza btn-fa" data-type="{{ pizza.id }}" data-size="lg">
+                            <i class="fas fa-plus-circle" aria-hidden="true"></i>
+                        </button>
+                    </div>
                 </div>
-            </div>
-            <div class="table-menu-items">
-                <div class="col-item-name">
-                    <p></p>
-                </div>
-                <div class="col-item-price">
-                    <div>
+                <div class="table-menu-items">
+                    <div class="col-item-name">
                         <p></p>
                     </div>
-                </div>
-                <div class="col-item-price">
-                    <div>
-                        <p></p>
+                    <div class="col-item-price">
+                        <div>
+                            <p></p>
+                        </div>
+                    </div>
+                    <div class="col-item-price">
+                        <div>
+                            <p></p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            {% endfor %}
-
-            <div class="row">
-                <div class="col-xs-12 col-md-6">
-                    <div id="pizza-topping-list">
-                        <p>Pick your toppings:</p>
-                        {% for topping in pizza_toppings %}
-                        <input type="checkbox" class="pizza-topping" value="{{ topping.id }}"> {{ topping }}<br>
-                        {% endfor %}
-                    </div>
-                </div>
-                <div class="col-xs-12 col-md-6">
-                    <div id="pizza-size">
-                        <p>Select a size:</p>
-                        <input type="radio" name="pizza-size" value="sm"> Small<br>
-                        <input type="radio" name="pizza-size" value="lg"> Large<br>
-                    </div>
-                    <div id="topping-button-area">
-                        <a class="yes-no-link" href="#">
-                            <button type="button" class="yes-no-btn btn btn-success">Confirm</button>
-                        </a>
-                        <a class="yes-no-link" href="#">
-                            <button type="button" class="yes-no-btn btn btn-danger">Cancel</button>
-                        </a>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
 
-            <h3 class="menu-heading">Subs</h3>
-            <div class="table-menu-items">
-                <div class="col-item-name">
-                </div>
-                <div class="col-item-price">
-                    <div>
-                        <h6>Small</h6>
+            <div id="pizza-topping-section">
+                <form action="{% url 'toppings' %}" method="post">
+                    {% csrf_token %}
+                    <div id="pizza-confirmation-box" class="row">
+                        <div class="col-xs-12 col-md-6">
+                            <div id="pizza-topping-list">
+                                <p>Pick your toppings:</p>
+                                {% for topping in pizza_toppings %}
+                                <input type="checkbox" name="pizza-toppings" class="pizza-topping" value="{{ topping.id }}"> {{ topping }} {{ topping.id }}<br>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-6">
+                            <div id="pizza-type">
+                                <p>Select pizza type:</p>
+                                {% for pizza in pizzas %}
+                                <input id="pizza-type-{{ pizza.id }}" type="radio" name="pizza-type" value="{{ pizza.id }}"> {{ pizza.name }} {{ pizza.id }}<br>
+                                {% endfor %}
+                            </div>
+                            <div id="pizza-size">
+                                <p>Select a size:</p>
+                                <input id="pizza-size-sm" type="radio" name="pizza-size" value="sm"> Small<br>
+                                <input id="pizza-size-lg" type="radio" name="pizza-size" value="lg"> Large<br>
+                            </div>
+                            <div id="topping-button-area">
+                                <a id="pizza-confirmation-box-confirm" class="yes-no-link" href="{% url 'toppings' %}">
+                                    <button type="submit" class="yes-no-btn btn btn-success">Confirm</button>
+                                </a>
+                                <a id="pizza-confirmation-box-cancel" class="yes-no-link" href="#">
+                                    <button type="button" class="yes-no-btn btn btn-danger">Cancel</button>
+                                </a>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="col-item-price">
-                    <div>
-                        <h6>Large</h6>
-                    </div>
-                </div>
+                </form>
             </div>
-            {% for sub in subs %}
-            <div class="table-menu-items">
-                <div class="col-item-name">
-                    <p>{{ sub.name }}</p>
-                </div>
-                <div class="col-item-price">
-                    {% if sub.price_sm %}
-                    <div>
-                        <p>
-                            {{ sub.price_sm }}
-                        </p>
-                    </div>
-                    <a href="{% url 'add' sub|class_name sub.id 'sm' %}">
-                        <i class="fas fa-plus-circle"></i>
-                    </a>
-                    {% else %}
-                    <div>
-                        <p> - </p>
-                    </div>
-                    {% endif %}
-                </div>
-                <div class="col-item-price">
-                    {% if sub.price_lg %}
-                    <div>
-                        <p>
-                            {{ sub.price_lg }}
-                        </p>
-                    </div>
-                    <a href="{% url 'add' sub|class_name sub.id 'lg' %}">
-                        <i class="fas fa-plus-circle"></i>
-                    </a>
-                    {% else %}
-                    <div>
-                        <p> - </p>
-                    </div>
-                    {% endif %}
-                </div>
-            </div>
-            {% endfor %}
 
-            <h3 class="menu-heading">Pastas</h3>
-            {% for pasta in pastas %}
-            <div class="table-menu-items">
-                <div class="col-item-name">
-                    <p>{{ pasta.name }}</p>
-                </div>
-                <div class="col-item-price">
-                    <div>
-                        <p>
-                            {{ pasta.price }}
-                        </p>
+            <div id="sub-section">
+                <h3 class="menu-heading">Subs</h3>
+                <div class="table-menu-items">
+                    <div class="col-item-name">
                     </div>
-                    <a href="{% url 'add' pasta|class_name pasta.id 'None' %}">
-                        <i class="fas fa-plus-circle"></i>
-                    </a>
+                    <div class="col-item-price">
+                        <div>
+                            <h6>Small</h6>
+                        </div>
+                    </div>
+                    <div class="col-item-price">
+                        <div>
+                            <h6>Large</h6>
+                        </div>
+                    </div>
                 </div>
+                {% for sub in subs %}
+                <div class="table-menu-items">
+                    <div class="col-item-name">
+                        <p>{{ sub.name }}</p>
+                    </div>
+                    <div class="col-item-price">
+                        {% if sub.price_sm %}
+                        <div>
+                            <p>
+                                {{ sub.price_sm }}
+                            </p>
+                        </div>
+                        <form action="{% url 'add' sub|class_name sub.id 'sm' %}" method="post">
+                            {% csrf_token %}
+                            <button class="btn-fa">
+                                <i class="fas fa-plus-circle" aria-hidden="true"></i>
+                            </button>
+                        </form>
+                        {% else %}
+                        <div>
+                            <p> - </p>
+                        </div>
+                        {% endif %}
+                    </div>
+                    <div class="col-item-price">
+                        {% if sub.price_lg %}
+                        <div>
+                            <p>
+                                {{ sub.price_lg }}
+                            </p>
+                        </div>
+                        <form action="{% url 'add' sub|class_name sub.id 'lg' %}" method="post">
+                            {% csrf_token %}
+                            <button class="btn-fa">
+                                <i class="fas fa-plus-circle" aria-hidden="true"></i>
+                            </button>
+                        </form>
+                        {% else %}
+                        <div>
+                            <p> - </p>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
             </div>
-            {% endfor %}
 
-            <h3 class="menu-heading">Salads</h3>
-            {% for salad in salads %}
-            <div class="table-menu-items">
-                <div class="col-item-name">
-                    <p>{{ salad.name }}</p>
-                </div>
-                <div class="col-item-price">
-                    <div>
-                        <p>{{ salad.price }}</p>
+            <div id="pasta-section">
+                <h3 class="menu-heading">Pastas</h3>
+                {% for pasta in pastas %}
+                <div class="table-menu-items">
+                    <div class="col-item-name">
+                        <p>{{ pasta.name }}</p>
                     </div>
-                    <a href="{% url 'add' salad|class_name salad.id 'None' %}">
-                        <i class="fas fa-plus-circle"></i>
-                    </a>
+                    <div class="col-item-price">
+                        <div>
+                            <p>
+                                {{ pasta.price }}
+                            </p>
+                        </div>
+                        <form action="{% url 'add' pasta|class_name pasta.id 'None' %}" method="post">
+                            {% csrf_token %}
+                            <button class="btn-fa">
+                                <i class="fas fa-plus-circle" aria-hidden="true"></i>
+                            </button>
+                        </form>
+                    </div>
                 </div>
+                {% endfor %}
             </div>
-            {% endfor %}
 
-            <h3 class="menu-heading">Dinner Platters</h3>
-            <div class="table-menu-items">
-                <div class="col-item-name">
-                </div>
-                <div class="col-item-price">
-                    <div>
-                        <h6>Small</h6>
+            <div id="salad-section">
+                <h3 class="menu-heading">Salads</h3>
+                {% for salad in salads %}
+                <div class="table-menu-items">
+                    <div class="col-item-name">
+                        <p>{{ salad.name }}</p>
+                    </div>
+                    <div class="col-item-price">
+                        <div>
+                            <p>{{ salad.price }}</p>
+                        </div>
+                        <form action="{% url 'add' salad|class_name salad.id 'None' %}" method="post">
+                            {% csrf_token %}
+                            <button class="btn-fa">
+                                <i class="fas fa-plus-circle" aria-hidden="true"></i>
+                            </button>
+                        </form>
                     </div>
                 </div>
-                <div class="col-item-price">
-                    <div>
-                        <h6>Large</h6>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
-            {% for platter in platters %}
-            <div class="table-menu-items">
-                <div class="col-item-name">
-                    <p>{{ platter.name }}</p>
-                </div>
-                <div class="col-item-price">
-                    <div>
-                        <p>{{ platter.price_sm }}</p>
+
+            <div id="platter-section">
+                <h3 class="menu-heading">Dinner Platters</h3>
+                <div class="table-menu-items">
+                    <div class="col-item-name">
                     </div>
-                    <a href="{% url 'add' platter|class_name platter.id 'sm' %}">
-                        <i class="fas fa-plus-circle"></i>
-                    </a>
-                </div>
-                <div class="col-item-price">
-                    <div>
-                        <p>{{ platter.price_lg }}</p>
+                    <div class="col-item-price">
+                        <div>
+                            <h6>Small</h6>
+                        </div>
                     </div>
-                    <a href="{% url 'add' platter|class_name platter.id 'lg' %}">
-                        <i class="fas fa-plus-circle"></i>
-                    </a>
+                    <div class="col-item-price">
+                        <div>
+                            <h6>Large</h6>
+                        </div>
+                    </div>
                 </div>
+                {% for platter in platters %}
+                <div class="table-menu-items">
+                    <div class="col-item-name">
+                        <p>{{ platter.name }}</p>
+                    </div>
+                    <div class="col-item-price">
+                        <div>
+                            <p>{{ platter.price_sm }}</p>
+                        </div>
+                        <form action="{% url 'add' platter|class_name platter.id 'sm' %}" method="post">
+                            {% csrf_token %}
+                            <button class="btn-fa">
+                                <i class="fas fa-plus-circle" aria-hidden="true"></i>
+                            </button>
+                        </form>
+                    </div>
+                    <div class="col-item-price">
+                        <div>
+                            <p>{{ platter.price_lg }}</p>
+                        </div>
+                        <form action="{% url 'add' platter|class_name platter.id 'lg' %}" method="post">
+                            {% csrf_token %}
+                            <button class="btn-fa">
+                                <i class="fas fa-plus-circle" aria-hidden="true"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                {% endfor %}
             </div>
-            {% endfor %}
         </div>
     </div>
 
@@ -352,9 +391,12 @@ Menu
                     <div>
                         {{ item.price }}
                     </div>
-                    <a href="{% url 'delete_item' item|class_name item.id %}">
-                        <i class="fas fa-times-circle"></i>
-                    </a>
+                    <form action="{% url 'delete_item' item|class_name item.id %}" method="post">
+                        {% csrf_token %}
+                        <button class="btn-fa">
+                            <i class="fas fa-times-circle" aria-hidden="true"></i>
+                        </button>
+                    </form>
                 </div>
             </div>
             {% endfor %}
@@ -372,9 +414,10 @@ Menu
                 <a class="yes-no-link" href="#">
                     <button type="button" class="yes-no-btn btn btn-success">Submit Order</button>
                 </a>
-                <a class="yes-no-link" href="{% url 'delete_order' %}">
-                    <button type="button" class="yes-no-btn btn btn-danger">Delete Cart</button>
-                </a>
+                <form class="yes-no-link" action="{% url 'delete_order' %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="yes-no-btn btn btn-danger">Delete Cart</button>
+                </form>
             </div>
         </div>
     </div>

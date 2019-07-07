@@ -9,5 +9,6 @@ urlpatterns = [
     path("logout", views.logout_view, name="logout"),
     path("add/<str:item_type>/<str:item_id>/<str:size>", views.add, name="add"),
     path("delete_item/<str:item_type>/<str:item_id>", views.delete_item, name="delete_item"),
-    path("delete_order", views.delete_order, name="delete_order")
+    path("delete_order", views.delete_order, name="delete_order"),
+    path("toppings", views.toppings, name="toppings")
 ]

@@ -131,6 +131,10 @@ $delete-color: #d9534f;
 
 }
 
+#pizza-confirmation-box {
+    display: none;
+}
+
 // BUTTONS
 .btn-main-light {
     border: 2px solid white !important;
@@ -142,6 +146,12 @@ $delete-color: #d9534f;
     color: white;
 }
 
+.btn-fa {
+    background: none;
+    border: none;
+	padding: 0;
+    height: 24px;
+}
 // NAVBAR
 .navbar {
     background-color: $main-color-2;

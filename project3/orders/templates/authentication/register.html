@@ -10,9 +10,9 @@ Register
 {% block body %}
 <div class="navbar-space">
 </div>
-<form method="post">
+<form id="registration-form" method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <button class="btn btn-btn-outline" type="submit">Register</button>
+    <button class="btn btn-outline-dark" type="submit">Register</button>
 </form>
 {% endblock %}

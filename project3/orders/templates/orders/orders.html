@@ -1,0 +1,21 @@
+{% extends "main/header.html" %}
+{% load static %}
+
+{% block title %}
+Orders
+{% endblock %}
+
+{% block navbar-items %}
+<span class="navbar-text">Welcome, <i class="fas fa-user"></i>{{ username }}</span>
+<a id="logout" class="nav-item nav-link left-border" href="{% url 'logout' %}">Log out  <i class="fas fa-sign-out-alt"></i></a>
+{% endblock %}
+
+{% block body %}
+<div class="navbar-space">
+</div>
+
+<h3 class="menu-heading">Submitted Orders</h3>
+{% for order in submitted_orders %}
+    <p>{{ order }}</p>
+{% endfor %}
+{% endblock %}

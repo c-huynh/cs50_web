@@ -3,9 +3,12 @@ $main-color-1: red;
 $main-color-2: #169647;
 $success-color: #5cb85c;
 $delete-color: #d9534f;
-
-// DIV
-
+$shopping-cart-color: #f2f2f2;
+$navbar-color: #333333;
+$navbar-text-color: white;
+/***********************************************************
+DIV
+************************************************************/
 #login-page {
     height: 100vh;
     width: 100vw;
@@ -13,13 +16,16 @@ $delete-color: #d9534f;
     #login-form-pane,
     #login-info-pane {
         position: relative;
-
         @media (min-width: 768px) {
             height: 100%;
-            h1, h4, h6 {
+
+            h1,
+            h4,
+            h6 {
                 margin-bottom: 20px;
                 margin-top: 20px;
             }
+
             button {
                 width: 50%;
             }
@@ -29,9 +35,11 @@ $delete-color: #d9534f;
             h1 {
                 font-size: 24px;
             }
+
             h4 {
                 font-size: 20px;
             }
+
             button {
                 width: 100%;
             }
@@ -40,10 +48,10 @@ $delete-color: #d9534f;
 
     #login-form-pane {
         background-color: $main-color-2;
+
         .center {
             width: 60%;
         }
-
         @media (max-width: 767px) {
             height: 60%;
 
@@ -55,10 +63,10 @@ $delete-color: #d9534f;
 
     #login-info-pane {
         background-color: white;
+
         .center {
             width: 100%;
         }
-
         @media (max-width: 767px) {
             height: 40%;
         }
@@ -78,27 +86,28 @@ $delete-color: #d9534f;
 
 .navbar-space {
     height: 56px;
-    margin-bottom: 20px;
+    // margin-bottom: 12px;
 }
 
 .menu-heading {
-    background-color: $main-color-1;
-    padding: 6px 10px 6px 10px;
-    margin: 0px 0px 10px 0px;
+    // background-color: lightgrey;
+    padding: 6px 10px;
+    margin: 16px 0;
     font-weight: bolder;
 }
 
 .table-menu-items {
     display: flex;
     width: 100%;
-    padding: 6px 0px 0px 10px;
+    padding: 6px 0 0 10px;
 }
 
 .col-item-name {
     flex: 1;
+
     p {
         margin-bottom: 6px;
-        @media (max-width: 320px){
+        @media (max-width: 320px) {
             font-size: 14px;
         }
     }
@@ -116,26 +125,67 @@ $delete-color: #d9534f;
         // background-color: yellow;
         text-align: right;
     }
+
     p {
         width: 100%;
         margin-bottom: 6px;
-
-        @media (max-width: 320px){
+        @media (max-width: 320px) {
             font-size: 14px;
         }
     }
+
     a {
         // background-color: orange;
         display: inline-block;
     }
-
 }
 
-#pizza-confirmation-box {
+#pizza-confirmation-section,
+#sub-confirmation-section {
+    display: none;
+
+    p {
+        margin-top: 12px;
+    }
+}
+
+#pizza-confirmation-btn-area,
+#sub-confirmation-btn-area {
+    text-align: center;
+    width: 100%;
+
+    div {
+        display: inline-block;
+
+        button {
+            margin-left: 16px;
+            margin-right: 16px;
+        }
+    }
+}
+
+.sub-topping-list {
     display: none;
 }
 
-// BUTTONS
+#shopping-cart {
+    top: 96px;
+    background-color: $shopping-cart-color;
+    padding: 16px;
+    border-radius: 5px;
+    height: 75vh;
+    display: flex;
+    flex-direction: column;
+    height: 80vh;
+}
+
+#shopping-cart-list-area {
+    flex: 1;
+    overflow-y: scroll;
+}
+/***********************************************************
+BUTTONS
+************************************************************/
 .btn-main-light {
     border: 2px solid white !important;
     color: white !important;
@@ -149,30 +199,59 @@ $delete-color: #d9534f;
 .btn-fa {
     background: none;
     border: none;
-	padding: 0;
+    padding: 0;
+}
+
+.btn-fa-sm {
     height: 24px;
 }
-// NAVBAR
+/***********************************************************
+NAVBAR
+************************************************************/
 .navbar {
-    background-color: $main-color-2;
-
+    background-color: $navbar-color;
 }
 
-// FONTAWESOME
+.navbar.navbar-expand-sm.navbar-light {
+    a,
+    span {
+        color: $navbar-text-color;
+    }
+}
+/***********************************************************
+FONTAWESOME
+************************************************************/
 .fa-times-circle {
     color: $delete-color;
 }
 
+.fa-check-circle,
 .fa-plus-circle {
     color: $success-color;
 }
 
-// INPUTS
+.fa-sign-out-alt,
+.fa-user {
+    margin-left: 6px;
+    margin-right: 6px;
+}
+/***********************************************************
+INPUTS AND FORMS
+************************************************************/
 input {
     margin-bottom: 16px;
 }
 
-// LINKS
+.pizza-topping {
+    // margin-bottom: 12px;
+}
+
+#registration-form {
+    margin-top: 40px;
+}
+/***********************************************************
+LINKS
+************************************************************/
 .yes-no-link {
     display: block;
 
@@ -180,5 +259,23 @@ input {
         width: 100%;
         margin-top: 10px;
         // margin-bottom: 10px;
+    }
+}
+
+#logout:hover {
+    color: grey;
+}
+/***********************************************************
+MISC
+************************************************************/
+hr {
+    margin: 0;
+}
+
+.left-border {
+    @media (min-width: 768px) {
+        border-left: 2px solid lightgrey;
+        margin-left: 18px;
+        padding-left: 18px !important;
     }
 }

@@ -1,3 +1,6 @@
+/***********************************************************
+DIV
+************************************************************/
 #login-page {
   height: 100vh;
   width: 100vw;
@@ -11,7 +14,9 @@
 #login-page #login-info-pane {
     height: 100%;
   }
-  #login-page #login-form-pane h1, #login-page #login-form-pane h4, #login-page #login-form-pane h6,
+  #login-page #login-form-pane h1,
+#login-page #login-form-pane h4,
+#login-page #login-form-pane h6,
 #login-page #login-info-pane h1,
 #login-page #login-info-pane h4,
 #login-page #login-info-pane h6 {
@@ -74,20 +79,18 @@
 
 .navbar-space {
   height: 56px;
-  margin-bottom: 20px;
 }
 
 .menu-heading {
-  background-color: red;
-  padding: 6px 10px 6px 10px;
-  margin: 0px 0px 10px 0px;
+  padding: 6px 10px;
+  margin: 16px 0;
   font-weight: bolder;
 }
 
 .table-menu-items {
   display: flex;
   width: 100%;
-  padding: 6px 0px 0px 10px;
+  padding: 6px 0 0 10px;
 }
 
 .col-item-name {
@@ -126,10 +129,53 @@
   display: inline-block;
 }
 
-#pizza-confirmation-box {
+#pizza-confirmation-section,
+#sub-confirmation-section {
+  display: none;
+}
+#pizza-confirmation-section p,
+#sub-confirmation-section p {
+  margin-top: 12px;
+}
+
+#pizza-confirmation-btn-area,
+#sub-confirmation-btn-area {
+  text-align: center;
+  width: 100%;
+}
+#pizza-confirmation-btn-area div,
+#sub-confirmation-btn-area div {
+  display: inline-block;
+}
+#pizza-confirmation-btn-area div button,
+#sub-confirmation-btn-area div button {
+  margin-left: 16px;
+  margin-right: 16px;
+}
+
+.sub-topping-list {
   display: none;
 }
 
+#shopping-cart {
+  top: 96px;
+  background-color: #f2f2f2;
+  padding: 16px;
+  border-radius: 5px;
+  height: 75vh;
+  display: flex;
+  flex-direction: column;
+  height: 80vh;
+}
+
+#shopping-cart-list-area {
+  flex: 1;
+  overflow-y: scroll;
+}
+
+/***********************************************************
+BUTTONS
+************************************************************/
 .btn-main-light {
   border: 2px solid white !important;
   color: white !important;
@@ -144,31 +190,81 @@
   background: none;
   border: none;
   padding: 0;
+}
+
+.btn-fa-sm {
   height: 24px;
 }
 
+/***********************************************************
+NAVBAR
+************************************************************/
 .navbar {
-  background-color: #169647;
+  background-color: #333333;
 }
 
+.navbar.navbar-expand-sm.navbar-light a,
+.navbar.navbar-expand-sm.navbar-light span {
+  color: white;
+}
+
+/***********************************************************
+FONTAWESOME
+************************************************************/
 .fa-times-circle {
   color: #d9534f;
 }
 
+.fa-check-circle,
 .fa-plus-circle {
   color: #5cb85c;
 }
 
+.fa-sign-out-alt,
+.fa-user {
+  margin-left: 6px;
+  margin-right: 6px;
+}
+
+/***********************************************************
+INPUTS AND FORMS
+************************************************************/
 input {
   margin-bottom: 16px;
 }
 
+#registration-form {
+  margin-top: 40px;
+}
+
+/***********************************************************
+LINKS
+************************************************************/
 .yes-no-link {
   display: block;
 }
 .yes-no-link .yes-no-btn {
   width: 100%;
   margin-top: 10px;
+}
+
+#logout:hover {
+  color: grey;
+}
+
+/***********************************************************
+MISC
+************************************************************/
+hr {
+  margin: 0;
+}
+
+@media (min-width: 768px) {
+  .left-border {
+    border-left: 2px solid lightgrey;
+    margin-left: 18px;
+    padding-left: 18px !important;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

@@ -127,3 +127,6 @@ dmypy.json
 
 # Flask Related
 flask_session/
+
+# atom-ternjs
+.tern-project

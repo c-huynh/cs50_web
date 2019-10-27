@@ -18,3 +18,17 @@ Website for this project is a sample restaurant website with 4 different pages:
 2. Menu - a sample menu
 3. Hours - opening hour
 4. Location - map and contact info
+
+## Screenshots
+
+### Homepage
+![Image of index.html](https://github.com/c-huynh/cs50_web/blob/project0_cleanup/project0/screenshots/project0_index.png)
+
+### Menu
+![Image of menu.html](https://github.com/c-huynh/cs50_web/blob/project0_cleanup/project0/screenshots/project0_menu.png)
+
+### Hours
+![Image of hours.html](https://github.com/c-huynh/cs50_web/blob/project0_cleanup/project0/screenshots/project0_hours.png)
+
+### Location
+![Image of location.html](https://github.com/c-huynh/cs50_web/blob/project0_cleanup/project0/screenshots/project0_location.png)

@@ -123,6 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
         username = document.querySelector('#username').value;
         if (username.length > 0) {
             localStorage.setItem('username', username);
+            document.querySelector('#change-username').value = username;
             document.querySelector('#welcome-page').style.display = 'none';
             document.querySelector('#logged-in-page').style.display = 'block';
         }

@@ -20,6 +20,23 @@ In this project, you’ll build a book review website. Users will be able to reg
 * Goodreads API
 
 ## Environment Variables Setup
-`FLASK_APP=application.py`\
-`FLASK_DEBUG=1` - to automatically reload webpage when a change is made\
-`DATABASE_URL=` database URI (under credentials if using Heroku)
+`export FLASK_APP=application.py`\
+`export FLASK_DEBUG=1` - to automatically reload webpage when a change is made\
+`export DATABASE_URL=` database URI (under credentials if using Heroku)
+
+## Screenshots
+
+### Login page
+![Image of login](screenshots/login.png)
+
+### Signup
+![Image of signup](screenshots/signup.png)
+
+### Search
+![Image of search](screenshots/search.png)
+
+### Search
+![Image of search results](screenshots/search_results.png)
+
+###
+![Image of search results](screenshots/bookpage.png)

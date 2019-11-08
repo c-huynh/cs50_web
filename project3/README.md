@@ -14,7 +14,7 @@ In this project, you’ll build an web application for handling a pizza restaura
 * Django
 * SQLite
 
-## Environment Variables Setup
+## Run Server
 Run `python manage.py runserver` to start application
 
 ## Screenshots
